@@ -129,7 +129,7 @@ class GenerateProduct
                 } elseif ($attribute->code =='product_number') {
                     $data[$attribute->code] = $faker->randomNumber(5);
                 } elseif ($attribute->code =='name') {
-                    $data[$attribute->code] = ucfirst($faker->words(random_int(1,4),true));
+                    $data[$attribute->code] = ucfirst($faker->words(rand(1,4),true));
                 } elseif ($attribute->code != 'sku') {
                     $data[$attribute->code] = $faker->name;
                 } else {
@@ -144,7 +144,7 @@ class GenerateProduct
             } elseif ($attribute->type == 'boolean') {
                 $data[$attribute->code] = $faker->boolean;
             } elseif ($attribute->type == 'price') {
-                $data[$attribute->code] = $faker->randomNumber(2);
+                $data[$attribute->code] = rand(5,200);
             } elseif ($attribute->type == 'datetime') {
                 $data[$attribute->code] = $date->toDateTimeString();
             } elseif ($attribute->type == 'date') {
@@ -196,6 +196,15 @@ class GenerateProduct
                     $data[$attribute->code] = "";
                 }
             }
+        }
+
+        // special price has to be less than price and not less than cost
+        // cost has to be less than price
+        if($data['special_price'] && $data['price'] && $data['cost']) {
+            if ($data['cost'] >= $data['price'] || $data['cost'] < ($data['price']*0.3)) {
+                $data['cost'] = $data['price'] * 0.75;
+            }
+            $data['special_price'] = $data['price'] -  ($data['price'] - $data['cost']) * (rand(20,70)/100);
         }
 
         $channel = core()->getCurrentChannel();
