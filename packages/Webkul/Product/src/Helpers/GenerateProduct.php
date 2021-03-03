@@ -99,8 +99,10 @@ class GenerateProduct
             'code' => 'default',
         ]);
 
-        $sku = Str::random(10);
-        $data['sku'] = strtolower($sku);
+        $faker = \Faker\Factory::create();
+
+        $sku = strtolower($faker->bothify('??#####???'));
+        $data['sku'] = $sku;
         $data['attribute_family_id'] = $attributeFamily->first()->id;
         $data['type'] = 'simple';
 
@@ -108,7 +110,7 @@ class GenerateProduct
 
         unset($data);
 
-        $faker = \Faker\Factory::create();
+        
         $date = date('Y-m-d');
         $date = \Carbon\Carbon::parse($date);
         $specialFrom = $date->toDateString();
@@ -123,7 +125,11 @@ class GenerateProduct
                 ) {
                     $data[$attribute->code] = $faker->randomNumber(3);
                 } elseif ($attribute->code == 'url_key') {
-                    $data[$attribute->code] = strtolower($sku);
+                    $data[$attribute->code] = $sku;
+                } elseif ($attribute->code =='product_number') {
+                    $data[$attribute->code] = $faker->randomNumber(5);
+                } elseif ($attribute->code =='name') {
+                    $data[$attribute->code] = ucfirst($faker->words(random_int(1,4),true));
                 } elseif ($attribute->code != 'sku') {
                     $data[$attribute->code] = $faker->name;
                 } else {
