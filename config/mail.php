@@ -121,7 +121,7 @@ return [
     |
     */
 
-    'sendmail' => '/usr/sbin/sendmail -bs',
+    'sendmail' => 'D:/laragon/bin/sendmail/sendmail.exe -bs',
 
     /*
     |--------------------------------------------------------------------------
