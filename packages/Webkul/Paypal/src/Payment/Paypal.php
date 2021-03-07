@@ -75,4 +75,28 @@ abstract class Paypal extends Payment
     {
         return true;
     }
+
+    /**
+     * Format a numeric value according to paypal's api constraints
+     * 
+     * @param float|int $long
+     * @return float
+     */
+    public function formatNumber($number): float
+    {
+        return round((float) $number, 2);
+    }
+
+    /**
+     * Format phone value according to paypal's api constraints
+     * 
+     * Strips characters like '+' or ' ' in "+54 11 3323 2323" numbers
+     * 
+     * @param mixed $phone
+     * @return string
+     */
+    public function formatPhone($phone): string
+    {
+        return preg_replace('/[^0-9]/', '', (string) $phone);
+    }
 }
