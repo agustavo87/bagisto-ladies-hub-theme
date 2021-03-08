@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'default' => 'default',
+    'default' => 'vanity',
 
     'themes' => [
         'default' => [
@@ -10,12 +10,12 @@ return [
             'name' => 'Default'
         ],
 
-        // 'bliss' => [
-        //     'views_path' => 'resources/themes/bliss/views',
-        //     'assets_path' => 'public/themes/bliss/assets',
-        //     'name' => 'Bliss',
-        //     'parent' => 'default'
-        // ]
+        'vanity' => [
+            'views_path' => 'resources/themes/vanity/views',
+            'assets_path' => 'public/themes/vanity/assets',
+            'name' => 'Vanity',
+            'parent' => 'default'
+        ],
 
         'velocity' => [
             'views_path' => 'resources/themes/velocity/views',
