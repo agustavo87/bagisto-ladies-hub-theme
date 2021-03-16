@@ -52,9 +52,9 @@
 }
 
 .whishlist-icon {
-    background-image:URL('../images/wishlist.svg');
-    width: 24px;
-    height: 24px;
+    // background-image:URL('../images/wishlist.svg');
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .share-icon {
@@ -96,21 +96,21 @@
 }
 
 .cart-icon {
-    background-image: url("../images/icon-cart.svg");
-    width: 24px;
-    height: 24px;
+    // background-image: url("../images/icon-cart.svg");
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .compare-icon {
-    background-image: url("../images/compare_arrows.png");
-    width: 32px;
-    height: 32px;
+    // background-image: url("../images/compare_arrows.png");
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .wishlist-icon {
-    background-image: url('../images/wishlist.svg');
-    width: 32px;
-    height: 32px;
+    // background-image: url('../images/wishlist.svg');
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .icon-arrow-up {
@@ -120,9 +120,22 @@
 }
 
 .icon-arrow-down {
-    background-image: url('../images/arrow-down.svg');
-    width: 16px;
-    height: 16px;
+    // background-image: url('../images/arrow-down.svg');
+    width: 1rem;
+    height: 1rem;
+}
+
+.arrow-down-icon {
+    background: none;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.active>.arrow-down-icon {
+    background: none;
+    color: $font-dark;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .expand-icon {
@@ -167,3 +180,8 @@
     background-image: url("../images/icon-dropdown.svg");
 }
 
+.account-icon {
+    background: none;
+    width: auto;
+    height: 1.5rem;
+}
