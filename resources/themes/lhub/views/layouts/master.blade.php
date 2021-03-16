@@ -110,7 +110,7 @@
         @endif
     </script>
 
-    <script type="text/javascript" src="{{ bagisto_asset('js/shop.js') }}"></script>
+    <script type="text/javascript" src="{{ bagisto_asset('js/lhub-app.js') }}"></script>
     <script type="text/javascript" src="{{ asset('vendor/webkul/ui/assets/js/ui.js') }}"></script>
 
     @stack('scripts')
