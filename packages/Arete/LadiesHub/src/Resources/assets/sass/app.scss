@@ -1102,21 +1102,21 @@ section.slider-block {
                     position: relative;
 
                     .search-field {
-                        height: 38px;
+                        height: 2rem;
                         border: 1px solid $border-color;
                         border-radius: 0;
                         border-right: none;
                         border-top-right-radius: 0px;
                         border-bottom-right-radius: 0px;
                         padding-left: 12px;
-                        font-size: 14px;
+                        font-size: 0.8rem;
                         -webkit-appearance: none;
                     }
 
                     .search-icon-wrapper {
                         box-sizing: border-box;
-                        height: 38px;
-                        width: 38px;
+                        height: 2rem;
+                        width: 2rem;
                         border: 1px solid $border-color;
                         border-top-right-radius: 3px;
                         border-bottom-right-radius: 3px;
@@ -1138,6 +1138,24 @@ section.slider-block {
 
                         }
                     }
+
+                    form:focus-within {
+                        .search-icon-wrapper .icon-search {
+                            stroke: $gray-400;
+                        }
+                    }
+
+                    // form label {
+                    //     position: absolute;
+                    //     font-size: 0.8rem;
+                    //     z-index: 2; 
+                    //     top: -5px;
+                    //     left: 6px;
+                    //     background: white;
+                    //     padding: 0 2px;
+                    //     line-height: 1;
+                    //     color: lightgray;
+                    // }
 
                     .image-search-container {
                         position: absolute;
