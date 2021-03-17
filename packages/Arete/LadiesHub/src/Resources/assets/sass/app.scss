@@ -36,6 +36,7 @@ body {
     width: auto;
     color: $font-medium;
     font-size: 16px;
+    line-height: 1.5em;
     // background-color: $gray-100;
 }
 
@@ -71,6 +72,17 @@ input {
 
 ::placeholder {
     color: $gray-400;
+}
+
+h1, h2 {
+    margin-top:0;
+    line-height: 1.25em;
+}
+h1 {
+    font-size: 2rem;
+}
+h2 {
+    font-size: 1.5rem;
 }
 
 .control-group {
@@ -1750,7 +1762,7 @@ section.slider-block {
                 .list-heading {
 
                     text-transform: uppercase;
-                    color: rgba(165, 165, 165, 1);
+                    color: $font-medium;
                 }
 
                 .list-group {
@@ -1772,9 +1784,9 @@ section.slider-block {
                         span.icon {
                             display: inline-block;
                             vertical-align: middle;
-                            margin-right: 5px;
-                            height: 24px;
-                            width: 24px;
+                            margin-right: 0.5rem;
+                            height: 1.5rem;
+                            width: 1.5rem;
                         }
                     }
                 }
@@ -2561,7 +2573,7 @@ section.product-detail {
                 .full-specifications {
                     td {
                         padding: 10px 0;
-                        color: $other-font-color;
+                        color: $font-medium;
 
                         &:first-child {
                             padding-right: 40px;
@@ -3281,6 +3293,7 @@ section.cart {
                     font-size: 24px;
                     font-weight: bold;
                     float: left;
+                    line-height: 1.25em;
                 }
 
                 .btn {
@@ -3410,6 +3423,14 @@ section.cart {
                     }
                 }
             }
+
+            &.review .button-group{
+                display:flex;
+                justify-content: flex-end;
+                .paypal-button-container {
+                    width:40%;
+                }
+            } 
         }
     }
 
@@ -3450,6 +3471,14 @@ section.cart {
             .control-group .control {
                 width:100%;
             }
+
+            &.review .button-group{
+                display:flex;
+                justify-content: flex-end;
+                .paypal-button-container {
+                    width:100% !important;
+                }
+            } 
         }
 
         .col-right {
@@ -4798,6 +4827,8 @@ section.review {
                         float: left !important;
                     }
                 }
+
+                
             }
         }
     }
