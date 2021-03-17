@@ -557,9 +557,9 @@ h2 {
             a {
                 color: $font-dark;
                 border-bottom: 1px solid transparent;
-                transition: border 0.25s ease-out;
+                // transition: border 0.25s ease-out;
                 &:hover {
-                    border-bottom: 3px solid $purple-400;
+                    color: $font-medium;
                 }
             }
         }
@@ -598,7 +598,7 @@ h2 {
 
 
                 &:hover {
-                    background-color: $purple-500;
+                    background-color: $purple-600;
                     color: white;
                     border: 1px solid transparent;
                 }
@@ -2289,15 +2289,24 @@ section.product-detail {
 
                     .addtocart {
                         width: 49%;
-                        background: black;
+                        background: transparent;
+                        border: 2px solid $brand-color;
                         white-space: normal;
+                        color: $brand-color;
                         text-transform: uppercase;
+                        &:hover {
+                            background-color: $purple-500;
+                            color: white;
+                        }
                     }
 
                     .buynow {
                         width: 49%;
                         white-space: nowrap;
                         text-transform: uppercase;
+                        &:hover {
+                            background-color: $purple-500;
+                        }
                     }
                 }
             }
