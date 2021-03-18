@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,500&display=swap");
+// @import url("https://fonts.googleapis.com/css?family=Montserrat:400,500&display=swap");
 
 $black:     #121212;
 
@@ -14,7 +14,6 @@ $gray-800:  #1e293b;
 $true-gray-200: #e5e5e5;
 $true-gray-100: #f5f5f5;
 
-
 $purple-400:    #c084fc;
 $purple-500:    #a855f7;
 $purple-600:    #9333ea;
@@ -22,15 +21,40 @@ $purple-600:    #9333ea;
 $salmon-pink-600:   #ff817d;
 $salmon-pink:       #FC6868;
 
-$font-dark: $gray-800;
-$font-medium: $gray-500;
+
+// $font-montserrat: "Montserrat", sans-serif;
+
+$system-serif: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+// $system-serif: "Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif;
+
+$display-font-family: 'Abril Fatface', $system-serif;
+$sans-font-family: 'Poppins', sans-serif;
+
 $font-light: $gray-400;
+$font-medium: $gray-500;
+$font-dark: $gray-800;
+
+$font-w-base: 400;
+$font-w-strong: 500;
+$font-w-bold: 700;
+
+$font-heading: $display-font-family;
+
 $other-font-color: $font-light;
-
-$font-sm: 0.8rem;
-
-
 $title-color: $font-medium;
+$link-color: #2650EF;
+$bold-color: $gray-600;
+
+$font-base-px: 16px;
+$font-base: 1rem;
+$font-sm: 0.8rem;
+$font-lg: 1.25rem;
+$font-xl: 2rem;
+$font-2xl: 3rem;
+$font-3xl: 4.5rem;
+
+$info-color: #204d74;
+
 
 //shop variables
 $brand-color: $purple-600;
@@ -38,14 +62,12 @@ $background-color: $true-gray-200;
 $review-details: $gray-400;
 
 $border-color: $gray-200;
-$link-color: #2650EF;
 $disc-price: #FF6472;
 $radio-button: #FF6472;
 $radio-button-disabled: rgba(255, 100, 113, 0.400);
 $danger-color: rgb(251, 57, 73);
 $disc-price-pro: $gray-400;
 $address-card-border-color: $gray-100;
-$bold-color: $gray-600;
 $sticker-color: #2ED04C;
 $stock-color: #4CAF50;
 $rating-color: #FC6868;
@@ -53,7 +75,6 @@ $star-color: $gray-100;
 $error-color: #ff5656;
 $line-bar-color: $gray-100;
 $btn-background-color: #fff;
-$info-color: #204d74;
 $ltgray: $gray-100;
 $listcolor: $gray-600;
 $spnr-color: $gray-300;
@@ -64,7 +85,3 @@ $slider-color: rgb(255, 100, 114);
 
 $product-image-background: white;
 
-//shop variables ends here
-
-//
-$font-montserrat: "Montserrat", sans-serif;

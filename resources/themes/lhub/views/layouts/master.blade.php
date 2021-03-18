@@ -10,8 +10,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="content-language" content="{{ app()->getLocale() }}">
-    <link rel="stylesheet" href="{{ asset('vendor/webkul/ui/assets/css/ui.css') }}">
 
+    {{-- Google Fonts --}}
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="{{ asset('vendor/webkul/ui/assets/css/ui.css') }}">
     <link rel="stylesheet" href="{{ bagisto_asset('css/lhub.css') }}">
 
     @if ($favicon = core()->getCurrentChannel()->favicon_url)

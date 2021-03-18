@@ -56,7 +56,7 @@
                     <div class="details">
 
                         <div class="product-heading">
-                            <span>{{ $product->name }}</span>
+                            <h2>{{ $product->name }}</h2>
                         </div>
 
                         @include ('shop::products.review', ['product' => $product])
