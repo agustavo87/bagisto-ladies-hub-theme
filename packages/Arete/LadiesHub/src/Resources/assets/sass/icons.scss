@@ -13,11 +13,11 @@
     margin-bottom: 2px;
 }
 
-.icon-menu-close {
-    background-image:URL('../images/icon-menu-close.svg');
-    width: 24px;
-    height: 24px;
-    margin-left: auto;
+.h-icon-menu-close {
+    width: 1.5rem;
+    height: 1.5rem;
+    stroke: $gray-500;
+    fill:none;
 }
 
 .icon-menu-close-adj {
@@ -63,10 +63,12 @@
     height: 24px;
 }
 
-.icon-menu {
-    background-image:URL('../images/icon-menu.svg');
-    width: 24px;
-    height: 24px;
+.h-icon-menu {
+    // background-image:URL('../images/icon-menu.svg');
+    width: 1.5rem;
+    height: 1.5rem;
+    stroke: $gray-500;
+    fill:none;
 }
 
 .icon-search {

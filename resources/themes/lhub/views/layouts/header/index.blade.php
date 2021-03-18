@@ -228,7 +228,10 @@ if(auth()->guard('customer')->check()) {
 
             </ul>
 
-            <span class="menu-box" ><span class="icon icon-menu" id="hammenu"></span>
+            <span class="menu-box" >
+                <x-icon-menu class="icon h-icon-menu" id="hammenu"></x-icon-menu>
+                <x-icon-menu-close class="icon h-icon-menu-close" id="hammenu-close" style="display: none"></x-icon-menu-close>
+            </span>
         </div>
     </div>
 
@@ -390,6 +393,27 @@ if(auth()->guard('customer')->check()) {
             $('body').delegate('#search, .icon-menu-close, .icon.icon-menu', 'click', function(e) {
                 toggleDropdown(e);
             });
+
+            $('#hammenu').click(function () {
+                $('#hammenu').hide();
+                $('#hammenu-close').show();
+                $("#header-bottom").css("display", "block");
+            })
+            $('#hammenu-close').click(function () {
+                $('#hammenu-close').hide();
+                $('#hammenu').show();
+                $("#header-bottom").css("display", "none");
+            })
+
+            $(window).resize(function() {
+                console.log(window.innerWidth);
+
+                if (window.innerWidth > 900) {
+                    $('#hammenu-close').hide();
+                    $('#hammenu').show();
+                    $("#header-bottom").css('display', '')
+                }
+            })
 
             @auth('customer')
 

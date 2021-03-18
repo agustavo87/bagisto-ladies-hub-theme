@@ -1421,6 +1421,9 @@ section.slider-block {
 
             .search-box, .menu-box {
                 display: none;
+                line-height: 0;
+                position: relative;
+                top: -1px;
             }
         }
     }
@@ -5097,7 +5100,7 @@ section.review {
     }
 }
 
-// Static content pages layout
+/* Static content pages layout */
 .static-container {
     display: block;
     width: 100%;
@@ -5222,11 +5225,6 @@ td {
     width: 24px;
     height:24px;
 }
-// .add-to-wishlist {
-//     margin-top: auto;
-//     margin-left: 15px;
-// }
-
 
 
 .compare-component .compare-icon {
@@ -5298,6 +5296,10 @@ td {
     }
     .main-container-wrapper {
         padding: 0px;
+
+        .header .header-top {
+            padding: 0.5rem;
+        }
 
         .content-container .product-card .product-name {
             margin-bottom: 0.5rem;
