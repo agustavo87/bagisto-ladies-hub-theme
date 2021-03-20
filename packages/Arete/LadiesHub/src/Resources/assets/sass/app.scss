@@ -478,8 +478,8 @@ h2 {
 .main-container-wrapper {
     max-width: 1300px;
     width: auto;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 1rem;
+    padding-right: 1rem;
     margin-left: auto;
     margin-right: auto;
 
@@ -538,7 +538,9 @@ h2 {
         background-color: white;
         .product-image {
             max-height: 350px;
-            max-width: 280px;
+            // max-width: 280px;
+            margin-left: 1rem;
+            margin-right: 1rem;
             margin-bottom: 10px;
             background: $background-color;
 
@@ -658,13 +660,13 @@ h2 {
         }
 
         .sticker {
-            border-bottom-right-radius: 15px;
+            border-bottom-right-radius: 1rem;
             position: absolute;
-            top: 15px;
-            left: 15px;
+            top: 1rem;
+            left: 0px;
             text-transform: uppercase;
-            padding: 4px 13px;
-            font-size: 14px;
+            padding: 0.25rem 0.8rem;
+            font-size: 0.8rem;
             color: $btn-background-color;
             box-shadow: 1px 1px 1px $shadow-color1;
             font-weight: $font-w-strong;
@@ -774,6 +776,7 @@ h2 {
         .product-grid-4 {
             grid-template-columns: repeat(1, minmax(205px, 1fr));
             grid-column-gap: 10px;
+            justify-items: normal;
         }
     }
 
@@ -5301,10 +5304,29 @@ td {
             padding: 0.5rem;
         }
 
-        .content-container .product-card .product-name {
-            margin-bottom: 0.5rem;
-            line-height: 1rem;
-        }
+        .content-container {
+            .product-card .product-name {
+                margin-bottom: 0.5rem;
+                line-height: 1rem;
+            }
+
+            .product-detail {
+                margin: 0 1rem;
+            }
+
+            .account-content, section.comparison-component {
+                margin-left: 1rem;
+                margin-right: 1rem;
+                width: calc(100% - 2rem);
+                // background: red;
+            }
+
+            .compared-products-wrapper {
+                // background-color: red;
+                width: 100%;
+                overflow-x: auto;
+            }
+        } 
     }
 }
 
