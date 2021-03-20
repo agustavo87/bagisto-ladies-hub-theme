@@ -8,7 +8,7 @@
 
 @section('content-wrapper')
 
-    <div class="account-content">
+    <div class="account-content customer">
         @include('shop::customers.account.partials.sidemenu')
 
         <div class="account-layout">
