@@ -384,14 +384,15 @@ h2 {
 /* Customer account section header */
 .account-head {
     .account-heading {
-        font-size: 28px;
+        font-size: 1rem;
         color: $font-dark;
         text-transform: capitalize;
         text-align: left;
+        font-weight: $font-w-strong;
     }
 
     .account-action {
-        font-size: 17px;
+        font-size: 1rem;
         margin-top: 1%;
         color: $brand-color;
         float: right;
@@ -417,10 +418,14 @@ h2 {
     .media-info {
         display: flex;
         flex-direction: row;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        
 
         .media {
-            height: 125px;
-            width: 110px;
+            height: 7rem;
+            width: 6rem;
+            object-fit: contain;
         }
 
         .info {
@@ -444,12 +449,39 @@ h2 {
         align-items: center;
 
         a {
+            font-size: 0.85rem;
             width: 100%;
             span {
                 float: right;
             }
         }
     }
+}
+
+@media only screen and (max-width: 580px) {
+    .account-item-card {
+        .media-info { 
+            font-size: 0.85rem;
+            line-height: 1.25rem;
+
+            .product-name {
+                color: $font-dark;
+                line-height: 1.15rem;
+            }
+        }
+
+        .operations {
+            font-size: 0.85rem;
+
+            a.btn {
+                padding: 0.5rem 0.5rem;
+                white-space: nowrap;
+            }
+        }
+
+
+    }
+
 }
 
 /* Account items list */
@@ -1952,7 +1984,8 @@ section.slider-block {
                             list-style: none none;
 
                             li.item {
-                                padding: 0.5rem 0;
+                                padding-top: 0.25rem;
+                                font-size: 0.85rem;
                                 color: $font-medium;
 
                                 .checkbox {
@@ -2617,14 +2650,26 @@ section.product-detail {
                 }
 
                 .full-specifications {
-                    td {
-                        padding: 10px 0;
-                        color: $font-medium;
+                    tr {
+                        td {
+                            padding: 0.5rem 0 0 0;
+                            color: $font-medium;
+    
+                            &:first-child {
+                                padding-right: 2rem;
+                                color: $font-dark;
+                            }
+                        }
 
                         &:first-child {
-                            padding-right: 40px;
+                            td {
+                                padding-top: 0;
+                            }
                         }
                     }
+
+
+
                 }
 
                 .accordian .accordian-header {
@@ -3912,6 +3957,17 @@ section.review {
             font-size: 1rem;
             color: $font-dark;
 
+            #down-icon {
+                width: 1.5rem;
+                height: 1.5rem;
+                color: $font-medium;
+                cursor: pointer;
+                
+                &:hover {
+                    color: $purple-600;
+                }
+            }
+
             .right {
                 display: none;
             }
@@ -3993,6 +4049,83 @@ section.review {
 .account-table-content {
     color: $font-dark;
     margin-top: 1.4%;
+    font-size: 1rem;
+    .control-group .control, .grid-dropdown-header {
+        height: 2rem;
+        font-size: 0.85rem;
+    }
+
+    .datagrid-filters {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        padding-right: 1rem;
+        font-size: 0.85rem;
+        .search-filter {
+            display: flex;
+            margin-right: 1rem;
+
+            .control {
+                font-size: 0.85rem;
+                border: 1px solid $font-light;
+                height: 2rem;
+            }
+
+            .icon-wrapper {
+                border: 1px solid $font-light;
+                border-left: none;
+                height: 2rem;
+                display: flex;
+
+                .search-icon {
+                    width: 1.25rem;
+                    height: 1.25rem;
+                    margin: 0 auto;
+                }
+            }
+        }
+
+        .filter-right {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            column-gap: 1rem;
+
+            .dropdown-filters {
+                display: flex;
+                
+                // margin-bottom: 0.5rem;
+                .control-group {
+                    display: flex;
+                    label {
+                        font-size: 0.85rem;
+                        white-space: nowrap;
+                    }
+                }
+
+                .dropdown-list.dropdown-container {
+                    button {
+                        padding: 0.5rem 1rem;
+                        font-size: 0.85rem;
+                    }
+                }
+            }
+        }
+
+        .grid-dropdown-header {
+            border: 1px solid $font-light;
+        }
+    }
+
+    @media all and (max-width: 965px) {
+        .datagrid-filters {
+            display: none;
+    
+            
+        }
+    }
+
+
+    
 
     table {
         width: 100%;
@@ -4066,18 +4199,19 @@ section.review {
 @media only screen and (max-width: 770px) {
     .account-content {
         flex-direction: column;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        width: calc(100% - 2rem);
 
         .sidebar {
-            width: calc(100% - 2rem);
-            margin-left: 1rem;
-            margin-right: 1rem;
+            width: 100%;
 
             .menu-block {
                 .menu-block-title {
                     height: 50px;
                     padding-top: 13px;
-                    border-bottom: 1px solid $border-color;
-                    border-top: 1px solid $border-color;
+                    // border-bottom: 1px solid $border-color;
+                    // border-top: 1px solid $border-color;
 
                     .right {
                         display: block;
@@ -4108,7 +4242,7 @@ section.review {
 
         .account-layout {
             margin-left: 0%;
-            margin-top: 20px;
+            margin-top: 0;
             width: 100%;
 
             .account-head  {
@@ -4117,11 +4251,12 @@ section.review {
                 border-bottom: 1px solid $border-color;
                 border-top: 1px solid $border-color;
                 height: 50px;
-                margin-top: 10px;
+                // margin-top: 10px;
 
                 .account-action {
                     margin-top: 12px;
                     margin-left: 15px;
+                    font-size: 0.85rem;
                 }
 
                 .back-icon {
@@ -4129,8 +4264,9 @@ section.review {
                 }
 
                 span {
-                    margin-top: 13px;
-                    font-size: 18px;
+                    margin-top: 0.8rem;
+                    font-size: 1rem;
+                    font-weight: $font-w-strong;
                 }
 
                 .horizontal-rule {
@@ -4139,18 +4275,31 @@ section.review {
             }
 
             .account-table-content {
-                margin-top: 2%;
+                margin-top: 0.5rem;
+                font-size: 0.85rem;
+
+                
 
                 table tbody tr {
-                    height: 70px;
+                    min-height: 3rem;
 
                     td {
                         display: block;
+                        padding: 0;
+
+                        &:first-child {
+                            font-weight: $font-w-strong;
+                        }
                     }
                 }
 
                 .address-holder {
                     justify-content: center;
+
+                    .address-card {
+                        width: 100%;
+                        margin-right: 0;
+                    }
                 }
             }
         }
@@ -4379,10 +4528,10 @@ section.review {
         table tbody {
             tr td:before {
                 content: attr(data-value);
-                    font-size: 15px;
+                    font-size: 0.85rem;
                     font-weight: $font-w-strong;
                     display: inline-block;
-                    width: 120px;
+                    width: 5rem;
             }
 
             td {
@@ -4391,9 +4540,9 @@ section.review {
                 width: 100% !important;
 
                 div {
-                    position: relative;
-                    left: 100px;
-                    top: -20px;
+                    // position: relative;
+                    // left: 5rem;
+                    // top: -1.25rem;
                 }
             }
 
@@ -5260,10 +5409,10 @@ body {
 }
 
 td {
-    padding: 15px;
-    min-width: 25px;
-    max-width: 250px;
-    line-height: 30px;
+    padding: 1rem;
+    min-width: 2rem;
+    max-width: 15rem;
+    line-height: 1.5rem;
     vertical-align: top;
 }
 
@@ -5390,8 +5539,15 @@ td {
     }
 }
 
+
+.btn.btn-lg {
+    padding: 0.5rem 1rem;
+}
+
 @media only screen and (max-width: 420px) { 
     body {
         font-size: 18px;
     }
  }
+
+

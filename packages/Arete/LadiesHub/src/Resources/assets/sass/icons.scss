@@ -116,9 +116,10 @@
 }
 
 .icon-arrow-up {
-    background-image: url('../images/arrow-up.svg');
-    width: 16px;
-    height: 16px;
+    // background-image: url('../images/arrow-up.svg');
+    transform: rotate(180deg);
+    width: 1rem;
+    height: 1rem;
 }
 
 .icon-arrow-down {
