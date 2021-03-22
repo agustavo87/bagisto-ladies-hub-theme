@@ -26,11 +26,15 @@ if(auth()->guard('customer')->check()) {
             <ul class="logo-container">
                 <li>
                     <a href="{{ route('shop.home.index') }}" aria-label="Logo">
-                        {{-- @if ($logo = core()->getCurrentChannel()->logo_url)
+                        {{--
+                        Logo based on img src is not modifiable by css
+
+                        @if ($logo = core()->getCurrentChannel()->logo_url)
                             <img class="logo" src="{{ $logo }}" alt="" />
                         @else
                             <img class="logo" src="{{ bagisto_asset('images/logo.svg') }}" alt="" />
-                        @endif --}}
+                        @endif 
+                        --}}
                         <x-lhub-logo  class="logo" />
                         <x-lhub-logo-xs  class="logo-xs" />
                     </a>
