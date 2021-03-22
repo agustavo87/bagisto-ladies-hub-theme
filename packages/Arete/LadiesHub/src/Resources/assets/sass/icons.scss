@@ -75,14 +75,19 @@
     // background-image:URL('../images/icon-search.svg');
     width: 1.25rem;
     height: 1.25rem;
-    stroke: $gray-300;
-    fill:none;
+    // stroke: $gray-300;
+    fill: $font-light;
 }
 
 .icon-menu-back {
     background-image:URL('../images/icon-menu-back.svg');
     width: 24px;
     height: 24px;
+}
+
+.x-icon-menu-back {
+    width: 1.25rem;
+    height: 1.25rem;
 }
 
 .shipping-icon {

@@ -1160,7 +1160,7 @@ section.slider-block {
 
                             &:hover {
                                 .icon-search {
-                                    stroke: $gray-400;
+                                    fill: $font-medium;
                                 }
                             }
 
@@ -1169,7 +1169,7 @@ section.slider-block {
 
                     form:focus-within {
                         .search-icon-wrapper .icon-search {
-                            stroke: $gray-400;
+                            fill: $font-medium;
                         }
                     }
 
@@ -1460,6 +1460,21 @@ section.slider-block {
                 position: relative;
                 top: -1px;
             }
+
+            .search-box {
+                .icon-search {
+                    fill: $font-medium;
+                    height: 1.5rem;
+                    width: 1.5rem;
+                    position: relative;
+                    top: 1px;
+                    cursor: pointer;
+
+                    &.hide {
+                        visibility: hidden;
+                    }
+                }
+            }
         }
     }
 
@@ -1620,16 +1635,47 @@ section.slider-block {
         .search-content {
             border-bottom: 1px solid $border-color;
             border-top: 1px solid $border-color;
-            height: 50px;
+            height: 2.75rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            padding: 1.5rem 0.5rem;
 
-            .search {
-                width: 80%;
-                border: none;
-                font-size: 16px;
+            .icon-menu-back-section {
+                display: flex;
+                .x-icon-menu-back {
+                    color: $font-medium;
+                    cursor: pointer;
+                }
             }
+
+            .search-button-section {
+                display: flex;
+                button {
+                    background: none; 
+                    border: none; 
+                    padding: 0px;
+                    line-height: 0;
+                    cursor: pointer;
+                    
+                    .icon-search {
+                        fill: $font-medium;
+                    }
+                }
+            }
+
+
+            .search-input-section {
+                flex-grow: 1;
+                .search {
+                    border: 1px solid $gray-200;
+                    margin: 0 0.5rem;
+                    font-size: 1rem;
+                    padding: 0.25rem 0.5rem;
+                    width: calc(100% - 1rem);
+                }
+            }
+
 
             .right {
                 float: right;
@@ -1663,8 +1709,8 @@ section.slider-block {
                 }
 
                 .search-box {
-                    display: none;
-                    margin-right: 10px;
+                    display: block;
+                    margin-right: calc(0.25rem + 3px);
                     cursor: pointer;
                 }
 
@@ -4540,11 +4586,11 @@ section.review {
                 display: block;
                 width: 100% !important;
 
-                div {
-                    // position: relative;
-                    // left: 5rem;
-                    // top: -1.25rem;
-                }
+                // div {
+                //     // position: relative;
+                //     // left: 5rem;
+                //     // top: -1.25rem;
+                // }
             }
 
             tr {

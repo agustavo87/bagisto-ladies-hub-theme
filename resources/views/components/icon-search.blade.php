@@ -1,6 +1,3 @@
-<svg {{ $attributes }}  fill="currentColor" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <g id="icon-search" stroke-width="1" fill-rule="evenodd">
-        <circle id="Oval-2" stroke-width="3" cx="10.5" cy="10.5" r="7"></circle>
-        <path d="M15.5,15.5 L21.5,21.5" id="Line" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
-    </g>
+<svg {{ $attributes }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
 </svg>

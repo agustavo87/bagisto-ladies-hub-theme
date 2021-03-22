@@ -71,7 +71,9 @@ if(auth()->guard('customer')->check()) {
 
         <div class="right-content">
 
-            <span class="search-box"><span class="icon icon-search" id="search"></span></span>
+            <span class="search-box">
+                <x-icon-search class="icon icon-search" id="search" />
+            </span>
 
             <ul class="right-content-menu">
 
@@ -242,25 +244,44 @@ if(auth()->guard('customer')->check()) {
     <div class="header-bottom" id="header-bottom">
         @include('shop::layouts.header.nav-menu.navmenu')
     </div>
+
     <div class="search-responsive mt-10" id="search-responsive">
         <form role="search" action="{{ route('shop.search.index') }}" method="GET" style="display: inherit;">
             <div class="search-content">
-                <button style="background: none; border: none; padding: 0px;">
-                    <i class="icon icon-search"></i>
-                </button>
+                {{-- <i class="icon icon-menu-back right"></i> --}}
+                <div class="icon-menu-back-section">
+                    <x-arrow-back-icon class="x-icon-menu-back" />
+                </div>
 
+               
+                
                 <image-search-component></image-search-component>
+                <div class="search-input-section">
+                    <input 
+                        type="search" 
+                        name="term" 
+                        class="search" 
+                        value="{{ ! $image_search ? $term : '' }}"
+                        placeholder="{{ __('shop::app.header.search-text') }}">
+                </div>
 
-                <input type="search" name="term" class="search">
-                <i class="icon icon-menu-back right"></i>
+                <div class="search-button-section">
+                    <button>
+                        <x-icon-search class="icon icon-search" />
+                    </button>
+                </div>
             </div>
         </form>
     </div>
-</div>
+</div> 
+
+
+
 
 @push('scripts')
+
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet" defer></script> 
 
     <script type="text/x-template" id="image-search-component-template">
         <div v-if="image_search_status">
@@ -275,7 +296,6 @@ if(auth()->guard('customer')->check()) {
     </script>
 
     <script>
-
         Vue.component('image-search-component', {
 
             template: '#image-search-component-template',
@@ -388,34 +408,29 @@ if(auth()->guard('customer')->check()) {
                 }
             }
         });
+    </script> 
 
-    </script>
+
+
 
     <script>
         $(document).ready(function() {
 
-            $('body').delegate('#search, .icon-menu-close, .icon.icon-menu', 'click', function(e) {
+            $('body').delegate('#search, .h-icon-menu-close, .icon.h-icon-menu, .x-icon-menu-back', 'click', function(e) {
                 toggleDropdown(e);
             });
-
-            $('#hammenu').click(function () {
-                $('#hammenu').hide();
-                $('#hammenu-close').show();
-                $("#header-bottom").css("display", "block");
-            })
-            $('#hammenu-close').click(function () {
-                $('#hammenu-close').hide();
-                $('#hammenu').show();
-                $("#header-bottom").css("display", "none");
-            })
+            
 
             $(window).resize(function() {
                 console.log(window.innerWidth);
 
+                // hide/show if open/closed some js dependent views
                 if (window.innerWidth > 900) {
                     $('#hammenu-close').hide();
                     $('#hammenu').show();
                     $("#header-bottom").css('display', '')
+                    $('#search').removeClass('hide');
+                    $("#search-responsive").css("display", "none");
                 }
             })
 
@@ -447,28 +462,34 @@ if(auth()->guard('customer')->check()) {
                 var currentElement = $(e.currentTarget);
 
                 if (currentElement.hasClass('icon-search')) {
-                    currentElement.removeClass('icon-search');
-                    currentElement.addClass('icon-menu-close');
-                    $('#hammenu').removeClass('icon-menu-close');
-                    $('#hammenu').addClass('icon-menu');
+                    // hide search icon
+                    currentElement.addClass('hide');
+
+                    // close standard menu if open
+                    $('#hammenu-close').hide();
+                    $('#hammenu').show();
+                    $("#header-bottom").css("display", "none");
+
+                    // display search area
                     $("#search-responsive").css("display", "block");
-                    $("#header-bottom").css("display", "none");
-                } else if (currentElement.hasClass('icon-menu')) {
-                    currentElement.removeClass('icon-menu');
-                    currentElement.addClass('icon-menu-close');
-                    $('#search').removeClass('icon-menu-close');
-                    $('#search').addClass('icon-search');
-                    $("#search-responsive").css("display", "none");
+                } else if (currentElement.hasClass('h-icon-menu')) {
+                    // show standard menu
+                    $('#hammenu').hide();
+                    $('#hammenu-close').show();
                     $("#header-bottom").css("display", "block");
-                } else {
-                    currentElement.removeClass('icon-menu-close');
+
+                    // hide search bar if open
+                    $('#search').removeClass('hide');
                     $("#search-responsive").css("display", "none");
+                } else {
+                    // close search bar
+                    $("#search-responsive").css("display", "none");
+                    $('#search').removeClass('hide');
+
+                    // close search menu
                     $("#header-bottom").css("display", "none");
-                    if (currentElement.attr("id") == 'search') {
-                        currentElement.addClass('icon-search');
-                    } else {
-                        currentElement.addClass('icon-menu');
-                    }
+                    $('#hammenu-close').hide();
+                    $('#hammenu').show();
                 }
             }
         });
