@@ -416,47 +416,9 @@ if(auth()->guard('customer')->check()) {
     <script>
         $(document).ready(function() {
 
-            $('body').delegate('#search, .h-icon-menu-close, .icon.h-icon-menu, .x-icon-menu-back', 'click', function(e) {
-                toggleDropdown(e);
-            });
-            
-
-            $(window).resize(function() {
-                console.log(window.innerWidth);
-
-                // hide/show if open/closed some js dependent views
-                if (window.innerWidth > 900) {
-                    $('#hammenu-close').hide();
-                    $('#hammenu').show();
-                    $("#header-bottom").css('display', '')
-                    $('#search').removeClass('hide');
-                    $("#search-responsive").css("display", "none");
-                }
-            })
-
-            @auth('customer')
-
-                let compareCount = @json($compareCount);
-
-                // let comparedItems = JSON.parse(localStorage.getItem('compared_product'));
-                
-                $('#compare-items-count').html(compareCount);
-            @endauth
-
-            @guest('customer')
-                let comparedItems = JSON.parse(localStorage.getItem('compared_product'));
-                let compareCount = comparedItems ? comparedItems.length : 0;
-
-                if(compareCount > 0) {
-                    $('#compare-dropdown-container').show();
-                    console.log('head: mostrando compare count')
-                } else {
-                    console.log('head: escondiendo compare count')
-                    $('#compare-dropdown-container').hide();
-                }
-
-                $('#compare-items-count').html(compareCount);
-            @endguest
+            /************************************************** 
+             * Menus / Dropdowns
+             **************************************************/
 
             function toggleDropdown(e) {
                 var currentElement = $(e.currentTarget);
@@ -492,6 +454,43 @@ if(auth()->guard('customer')->check()) {
                     $('#hammenu').show();
                 }
             }
+
+            $('body').delegate('#search, .h-icon-menu-close, .icon.h-icon-menu, .x-icon-menu-back', 'click', function(e) {
+                toggleDropdown(e);
+            });
+
+            $(window).resize(function() {
+                // hide/show if open/closed some js dependent views
+                if (window.innerWidth > 900) {
+                    $('#hammenu-close').hide();
+                    $('#hammenu').show();
+                    $("#header-bottom").css('display', '')
+                    $('#search').removeClass('hide');
+                    $("#search-responsive").css("display", "none");
+                }
+            })
+
+            /************************************************** 
+             * Compare UI
+             **************************************************/
+
+            @auth('customer')
+                let compareCount = @json($compareCount);
+                $('#compare-items-count').html(compareCount);
+            @endauth
+
+            @guest('customer')
+                let comparedItems = JSON.parse(localStorage.getItem('compared_product'));
+                let compareCount = comparedItems ? comparedItems.length : 0;
+
+                if(compareCount > 0) {
+                    $('#compare-dropdown-container').show();
+                } else {
+                    console.log('head: escondiendo compare count')
+                }
+
+                $('#compare-items-count').html(compareCount);
+            @endguest
         });
     </script>
 @endpush
