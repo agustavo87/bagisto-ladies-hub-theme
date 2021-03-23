@@ -49,13 +49,15 @@
     <div id="app">
         <flash-wrapper ref='flashes'></flash-wrapper>
 
+        {!! view_render_event('bagisto.shop.layout.header.before') !!}
+
+        @include('shop::layouts.header.index')
+
+        {!! view_render_event('bagisto.shop.layout.header.after') !!}
+
         <div class="main-container-wrapper">
 
-            {!! view_render_event('bagisto.shop.layout.header.before') !!}
-
-            @include('shop::layouts.header.index')
-
-            {!! view_render_event('bagisto.shop.layout.header.after') !!}
+            
 
             @yield('slider')
 

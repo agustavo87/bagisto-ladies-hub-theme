@@ -19,262 +19,263 @@ if(auth()->guard('customer')->check()) {
 }
 @endphp
 
-
-<div class="header" id="header">
-    <div class="header-top">
-        <div class="left-content">
-            <ul class="logo-container">
-                <li>
-                    <a href="{{ route('shop.home.index') }}" aria-label="Logo">
-                        {{--
-                        Logo based on img src is not modifiable by css
-
-                        @if ($logo = core()->getCurrentChannel()->logo_url)
-                            <img class="logo" src="{{ $logo }}" alt="" />
-                        @else
-                            <img class="logo" src="{{ bagisto_asset('images/logo.svg') }}" alt="" />
-                        @endif 
-                        --}}
-                        <x-lhub-logo  class="logo" />
-                        <x-lhub-logo-xs  class="logo-xs" />
-                    </a>
-                </li>
-            </ul>
-
-            <ul class="search-container">
-                <li class="search-group">
-                    <form role="search" action="{{ route('shop.search.index') }}" method="GET" style="display: inherit;">
-                        <label for="search-bar" style="position: absolute; z-index: -1;">Search</label>
-                        <input
-                            required
-                            name="term"
-                            type="search"
-                            value="{{ ! $image_search ? $term : '' }}"
-                            class="search-field"
-                            id="search-bar"
-                            placeholder="{{ __('shop::app.header.search-text') }}"
-                        >
-
+<div class="header-wrapper">
+    <div class="main-container-wrapper">
+        <div class="header" id="header">
+            <div class="header-top">
+                <div class="left-content">
+                    <ul class="logo-container">
+                        <li>
+                            <a href="{{ route('shop.home.index') }}" aria-label="Logo">
+                                {{--
+                                Logo based on img src is not modifiable by css
+        
+                                @if ($logo = core()->getCurrentChannel()->logo_url)
+                                    <img class="logo" src="{{ $logo }}" alt="" />
+                                @else
+                                    <img class="logo" src="{{ bagisto_asset('images/logo.svg') }}" alt="" />
+                                @endif 
+                                --}}
+                                <x-lhub-logo  class="logo" />
+                                <x-lhub-logo-xs  class="logo-xs" />
+                            </a>
+                        </li>
+                    </ul>
+        
+                    <ul class="search-container">
+                        <li class="search-group">
+                            <form role="search" action="{{ route('shop.search.index') }}" method="GET" style="display: inherit;">
+                                <label for="search-bar" style="position: absolute; z-index: -1;">Search</label>
+                                <input
+                                    required
+                                    name="term"
+                                    type="search"
+                                    value="{{ ! $image_search ? $term : '' }}"
+                                    class="search-field"
+                                    id="search-bar"
+                                    placeholder="{{ __('shop::app.header.search-text') }}"
+                                >
+        
+                                <image-search-component></image-search-component>
+        
+                                <div class="search-icon-wrapper">
+        
+                                    <button class="" class="background: none;" aria-label="Search">
+                                        {{-- <i class="icon icon-search"></i> --}}
+                                        <x-icon-search class="icon icon-search" />
+                                    </button>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+        
+                <div class="right-content">
+        
+                    <span class="search-box">
+                        <x-icon-search class="icon icon-search" id="search" />
+                    </span>
+        
+                    <ul class="right-content-menu">
+        
+                       {{-- Compare --}}
+        
+                        {!! view_render_event('bagisto.shop.layout.header.comppare-item.before') !!}
+        
+                        @php
+                            $showCompare = core()->getConfigData('general.content.shop.compare_option') == "1" ? true : false
+                        @endphp
+        
+                        @if ($showCompare)
+                            <li class="compare-dropdown-container" id="compare-dropdown-container" style="display: {{ $compareCount ? 'flex' : 'none' }}">
+                                <a
+                                    @auth('customer')
+                                        href="{{ route('velocity.customer.product.compare') }}"
+                                    @endauth
+        
+                                    @guest('customer')
+                                        href="{{ route('velocity.product.compare') }}"
+                                    @endguest
+                                    >
+                                    <x-compare-icon class="compare-icon"/>
+                                    <span class="name">
+                                        {{ __('shop::app.customer.compare.text') }}
+                                        <span class="count">(<span id="compare-items-count">{{ $compareCount }}</span>)
+                                    </span>
+                                </a>
+                            </li>
+                        @endif
+        
+                        {!! view_render_event('bagisto.shop.layout.header.compare-item.after') !!}
+        
+                       {{-- Compare / --}}
+        
+                       {{-- Currency --}}
+        
+                        {!! view_render_event('bagisto.shop.layout.header.currency-item.before') !!}
+        
+                        @if (core()->getCurrentChannel()->currencies->count() > 1)
+                            <li class="currency-switcher">
+                                <span class="dropdown-toggle">
+                                    {{ core()->getCurrentCurrencyCode() }}
+                                    <x-arrow-down-icon class="arrow-down-icon"
+                                    {{-- <i class="icon arrow-down-icon"></i> --}}
+                                </span>
+        
+                                <ul class="dropdown-list currency">
+                                    @foreach (core()->getCurrentChannel()->currencies as $currency)
+                                        <li>
+                                            @if (isset($serachQuery))
+                                                <a href="?{{ $serachQuery }}&currency={{ $currency->code }}">{{ $currency->code }}</a>
+                                            @else
+                                                <a href="?currency={{ $currency->code }}">{{ $currency->code }}</a>
+                                            @endif
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                        @endif
+        
+                        {!! view_render_event('bagisto.shop.layout.header.currency-item.after') !!}
+        
+                       {{-- Currency / --}}
+        
+                       {{-- Cart --}}
+        
+                        {!! view_render_event('bagisto.shop.layout.header.cart-item.before') !!}
+        
+                        <li class="cart-dropdown-container">
+        
+                            @include('shop::checkout.cart.mini-cart')
+        
+                        </li>
+        
+                        {!! view_render_event('bagisto.shop.layout.header.cart-item.after') !!}
+        
+                       {{-- Cart / --}}
+        
+                       {{-- Account Options --}}
+        
+                        {!! view_render_event('bagisto.shop.layout.header.account-item.before') !!}
+        
+                        <li class="account-options">
+                            <span class="dropdown-toggle">
+                                <x-account-icon class="account-icon" />
+                                <span class="name">{{ __('shop::app.header.account') }}</span>
+                                {{-- <i class="icon arrow-down-icon"></i> --}}
+                                <x-arrow-down-icon class="arrow-down-icon" />
+                            </span>
+        
+                            @guest('customer')
+                                <ul class="dropdown-list account guest">
+                                    <li>
+                                        <div>
+                                            <label style="color: #9e9e9e; font-weight: 700; text-transform: uppercase; font-size: 15px;">
+                                                {{ __('shop::app.header.title') }}
+                                            </label>
+                                        </div>
+        
+                                        <div style="margin-top: 5px;">
+                                            <span style="font-size: 12px;">{{ __('shop::app.header.dropdown-text') }}</span>
+                                        </div>
+        
+                                        <div style="margin-top: 15px;">
+                                            <a class="btn btn-primary btn-md" href="{{ route('customer.session.index') }}" style="color: #ffffff">
+                                                {{ __('shop::app.header.sign-in') }}
+                                            </a>
+        
+                                            <a class="btn btn-primary btn-md" href="{{ route('customer.register.index') }}" style="float: right; color: #ffffff">
+                                                {{ __('shop::app.header.sign-up') }}
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            @endguest
+        
+                            @auth('customer')
+                                @php
+                                   $showWishlist = core()->getConfigData('general.content.shop.wishlist_option') == "1" ? true : false;
+                                @endphp
+        
+                                <ul class="dropdown-list account customer">
+                                    <li>
+                                        <div>
+                                            <label style="color: #9e9e9e; font-weight: 700; text-transform: uppercase; font-size: 15px;">
+                                                {{ auth()->guard('customer')->user()->first_name }}
+                                            </label>
+                                        </div>
+        
+                                        <ul>
+                                            <li>
+                                                <a href="{{ route('customer.profile.index') }}">{{ __('shop::app.header.profile') }}</a>
+                                            </li>
+        
+                                            @if ($showWishlist)
+                                                <li>
+                                                    <a href="{{ route('customer.wishlist.index') }}">{{ __('shop::app.header.wishlist') }}</a>
+                                                </li>
+                                            @endif
+        
+                                            <li>
+                                                <a href="{{ route('shop.checkout.cart.index') }}">{{ __('shop::app.header.cart') }}</a>
+                                            </li>
+        
+                                            <li>
+                                                <a href="{{ route('customer.session.destroy') }}">{{ __('shop::app.header.logout') }}</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            @endauth
+                        </li>
+        
+                        {!! view_render_event('bagisto.shop.layout.header.account-item.after') !!}
+        
+                       {{-- Account Options / --}}
+        
+                    </ul>
+        
+                    <span class="menu-box" >
+                        <x-icon-menu class="icon h-icon-menu" id="hammenu"></x-icon-menu>
+                        <x-icon-menu-close class="icon h-icon-menu-close" id="hammenu-close" style="display: none"></x-icon-menu-close>
+                    </span>
+                </div>
+            </div>
+        
+            <div class="header-bottom" id="header-bottom">
+                @include('shop::layouts.header.nav-menu.navmenu')
+            </div>
+        
+            <div class="search-responsive mt-10" id="search-responsive">
+                <form role="search" action="{{ route('shop.search.index') }}" method="GET" style="display: inherit;">
+                    <div class="search-content">
+                        {{-- <i class="icon icon-menu-back right"></i> --}}
+                        <div class="icon-menu-back-section">
+                            <x-arrow-back-icon class="x-icon-menu-back" />
+                        </div>
+                        
                         <image-search-component></image-search-component>
-
-                        <div class="search-icon-wrapper">
-
-                            <button class="" class="background: none;" aria-label="Search">
-                                {{-- <i class="icon icon-search"></i> --}}
+                        <div class="search-input-section">
+                            <input 
+                                type="search" 
+                                name="term" 
+                                class="search" 
+                                value="{{ ! $image_search ? $term : '' }}"
+                                placeholder="{{ __('shop::app.header.search-text') }}">
+                        </div>
+        
+                        <div class="search-button-section">
+                            <button>
                                 <x-icon-search class="icon icon-search" />
                             </button>
                         </div>
-                    </form>
-                </li>
-            </ul>
-        </div>
-
-        <div class="right-content">
-
-            <span class="search-box">
-                <x-icon-search class="icon icon-search" id="search" />
-            </span>
-
-            <ul class="right-content-menu">
-
-               {{-- Compare --}}
-
-                {!! view_render_event('bagisto.shop.layout.header.comppare-item.before') !!}
-
-                @php
-                    $showCompare = core()->getConfigData('general.content.shop.compare_option') == "1" ? true : false
-                @endphp
-
-                @if ($showCompare)
-                    <li class="compare-dropdown-container" id="compare-dropdown-container" style="display: {{ $compareCount ? 'flex' : 'none' }}">
-                        <a
-                            @auth('customer')
-                                href="{{ route('velocity.customer.product.compare') }}"
-                            @endauth
-
-                            @guest('customer')
-                                href="{{ route('velocity.product.compare') }}"
-                            @endguest
-                            >
-                            <x-compare-icon class="compare-icon"/>
-                            <span class="name">
-                                {{ __('shop::app.customer.compare.text') }}
-                                <span class="count">(<span id="compare-items-count">{{ $compareCount }}</span>)
-                            </span>
-                        </a>
-                    </li>
-                @endif
-
-                {!! view_render_event('bagisto.shop.layout.header.compare-item.after') !!}
-
-               {{-- Compare / --}}
-
-               {{-- Currency --}}
-
-                {!! view_render_event('bagisto.shop.layout.header.currency-item.before') !!}
-
-                @if (core()->getCurrentChannel()->currencies->count() > 1)
-                    <li class="currency-switcher">
-                        <span class="dropdown-toggle">
-                            {{ core()->getCurrentCurrencyCode() }}
-                            <x-arrow-down-icon class="arrow-down-icon"
-                            {{-- <i class="icon arrow-down-icon"></i> --}}
-                        </span>
-
-                        <ul class="dropdown-list currency">
-                            @foreach (core()->getCurrentChannel()->currencies as $currency)
-                                <li>
-                                    @if (isset($serachQuery))
-                                        <a href="?{{ $serachQuery }}&currency={{ $currency->code }}">{{ $currency->code }}</a>
-                                    @else
-                                        <a href="?currency={{ $currency->code }}">{{ $currency->code }}</a>
-                                    @endif
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                @endif
-
-                {!! view_render_event('bagisto.shop.layout.header.currency-item.after') !!}
-
-               {{-- Currency / --}}
-
-               {{-- Cart --}}
-
-                {!! view_render_event('bagisto.shop.layout.header.cart-item.before') !!}
-
-                <li class="cart-dropdown-container">
-
-                    @include('shop::checkout.cart.mini-cart')
-
-                </li>
-
-                {!! view_render_event('bagisto.shop.layout.header.cart-item.after') !!}
-
-               {{-- Cart / --}}
-
-               {{-- Account Options --}}
-
-                {!! view_render_event('bagisto.shop.layout.header.account-item.before') !!}
-
-                <li class="account-options">
-                    <span class="dropdown-toggle">
-                        <x-account-icon class="account-icon" />
-                        <span class="name">{{ __('shop::app.header.account') }}</span>
-                        {{-- <i class="icon arrow-down-icon"></i> --}}
-                        <x-arrow-down-icon class="arrow-down-icon" />
-                    </span>
-
-                    @guest('customer')
-                        <ul class="dropdown-list account guest">
-                            <li>
-                                <div>
-                                    <label style="color: #9e9e9e; font-weight: 700; text-transform: uppercase; font-size: 15px;">
-                                        {{ __('shop::app.header.title') }}
-                                    </label>
-                                </div>
-
-                                <div style="margin-top: 5px;">
-                                    <span style="font-size: 12px;">{{ __('shop::app.header.dropdown-text') }}</span>
-                                </div>
-
-                                <div style="margin-top: 15px;">
-                                    <a class="btn btn-primary btn-md" href="{{ route('customer.session.index') }}" style="color: #ffffff">
-                                        {{ __('shop::app.header.sign-in') }}
-                                    </a>
-
-                                    <a class="btn btn-primary btn-md" href="{{ route('customer.register.index') }}" style="float: right; color: #ffffff">
-                                        {{ __('shop::app.header.sign-up') }}
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    @endguest
-
-                    @auth('customer')
-                        @php
-                           $showWishlist = core()->getConfigData('general.content.shop.wishlist_option') == "1" ? true : false;
-                        @endphp
-
-                        <ul class="dropdown-list account customer">
-                            <li>
-                                <div>
-                                    <label style="color: #9e9e9e; font-weight: 700; text-transform: uppercase; font-size: 15px;">
-                                        {{ auth()->guard('customer')->user()->first_name }}
-                                    </label>
-                                </div>
-
-                                <ul>
-                                    <li>
-                                        <a href="{{ route('customer.profile.index') }}">{{ __('shop::app.header.profile') }}</a>
-                                    </li>
-
-                                    @if ($showWishlist)
-                                        <li>
-                                            <a href="{{ route('customer.wishlist.index') }}">{{ __('shop::app.header.wishlist') }}</a>
-                                        </li>
-                                    @endif
-
-                                    <li>
-                                        <a href="{{ route('shop.checkout.cart.index') }}">{{ __('shop::app.header.cart') }}</a>
-                                    </li>
-
-                                    <li>
-                                        <a href="{{ route('customer.session.destroy') }}">{{ __('shop::app.header.logout') }}</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    @endauth
-                </li>
-
-                {!! view_render_event('bagisto.shop.layout.header.account-item.after') !!}
-
-               {{-- Account Options / --}}
-
-            </ul>
-
-            <span class="menu-box" >
-                <x-icon-menu class="icon h-icon-menu" id="hammenu"></x-icon-menu>
-                <x-icon-menu-close class="icon h-icon-menu-close" id="hammenu-close" style="display: none"></x-icon-menu-close>
-            </span>
-        </div>
-    </div>
-
-    <div class="header-bottom" id="header-bottom">
-        @include('shop::layouts.header.nav-menu.navmenu')
-    </div>
-
-    <div class="search-responsive mt-10" id="search-responsive">
-        <form role="search" action="{{ route('shop.search.index') }}" method="GET" style="display: inherit;">
-            <div class="search-content">
-                {{-- <i class="icon icon-menu-back right"></i> --}}
-                <div class="icon-menu-back-section">
-                    <x-arrow-back-icon class="x-icon-menu-back" />
-                </div>
-
-               
-                
-                <image-search-component></image-search-component>
-                <div class="search-input-section">
-                    <input 
-                        type="search" 
-                        name="term" 
-                        class="search" 
-                        value="{{ ! $image_search ? $term : '' }}"
-                        placeholder="{{ __('shop::app.header.search-text') }}">
-                </div>
-
-                <div class="search-button-section">
-                    <button>
-                        <x-icon-search class="icon icon-search" />
-                    </button>
-                </div>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div> 
     </div>
-</div> 
-
+</div>
+    
 
 
 
@@ -410,10 +411,36 @@ if(auth()->guard('customer')->check()) {
         });
     </script> 
 
-
-
-
     <script>
+
+        class calculatePadding {
+            constructor(headSelector) {
+                this.headSelector = headSelector;
+            }
+            setPadding() {
+                let size = document.querySelector(this.headSelector).offsetHeight;
+                console.log(this.head);
+                console.log('size: ', size);
+
+                document.body.style.paddingTop=size + 'px';
+            }
+
+            doit() {
+                document.body.style.paddingTop='104px';
+            }
+        }
+
+        const padCalc = new calculatePadding('#header');
+        window.addEventListener('DOMContentLoaded', (event) => {
+            console.log('DOM fully loaded and parsed');
+            padCalc.setPadding();
+        });
+
+        window.addEventListener('resize', () => {
+            console.log('resizing');
+            padCalc.setPadding();
+        })
+
         $(document).ready(function() {
 
             /************************************************** 
@@ -491,6 +518,52 @@ if(auth()->guard('customer')->check()) {
 
                 $('#compare-items-count').html(compareCount);
             @endguest
+
+            /************************************************** 
+             * Dinamic Navbar
+             **************************************************/
+
+            //  let initialHeaderBottomHeight = $('#header-bottom').height();
+            //  console.log('initialHeaderBottomHeight', initialHeaderBottomHeight);
+            //  $(window).scroll(function () {
+            //      let headerBottomHeight = initialHeaderBottomHeight - $(window).scrollTop();
+            //      console.log('headerBottomHeight A', headerBottomHeight);
+            //      headerBottomHeight = headerBottomHeight <= 0 ? 0 : headerBottomHeight;
+            //      console.log('headerBottomHeight B', headerBottomHeight);
+
+            //      $('#header-bottom').height(headerBottomHeight + 'px');
+            //  })
+
+            // window.addEventListener('scroll', function (event) {
+            //     console.log('window scrolled:', event)
+            // })
+
+            const headerBottom = document.querySelector('#header-bottom');
+            const header = document.querySelector('#header');
+            const headerInitialOffset = header.offsetTop;
+            const headerInitialWidth = header.clientWidth;
+            
+            // header.style.position = 'fixed';
+            // header.style.top = headerInitialOffset + 'px';
+            // header.style.width = headerInitialWidth + 'px';
+            // document.body.style.paddingTop = header.clientHeight + 'px';
+
+            
+            
+            // const headerBottomInitialHeight = headerBottom.clientHeight;
+            // headerBottom.style.height = headerBottomInitialHeight + 'px';
+            // window.addEventListener('scroll', () => {
+            //     let pageY = window.pageYOffset; 
+            //     let calcHeight = headerBottomInitialHeight - pageY;
+            //     calcHeight = calcHeight <= 0 ? 0 : calcHeight;
+
+            //     console.log('header-bottom A:', headerBottom.style.height);
+            //     console.log('top: ', pageY);
+            //     console.log('calcHeight: ', calcHeight);
+            //     headerBottom.style.height = calcHeight + 'px';
+            // });
+
+            
         });
     </script>
 @endpush
