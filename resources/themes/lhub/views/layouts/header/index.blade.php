@@ -412,9 +412,9 @@ if(auth()->guard('customer')->check()) {
     </script> 
 
     <script>
-            /************************************************** 
-             * Dinamic Navbar
-             **************************************************/
+        /************************************************** 
+         * Dinamic Navbar
+         **************************************************/
 
         class calculatePadding {
             constructor(headSelector) {
@@ -534,7 +534,7 @@ if(auth()->guard('customer')->check()) {
             /** 
              * @param {Window} w -the window object 
              * @returns {boolean}
-             * */
+             */
             disabled(w = null) {
                 if (!this.init()) return true;
                 w = w ? w : window;
@@ -650,7 +650,6 @@ if(auth()->guard('customer')->check()) {
 
                 $('#compare-items-count').html(compareCount);
             @endguest
-
 
         });
     </script>
