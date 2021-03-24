@@ -9,10 +9,17 @@ import accounting from 'accounting';
 import ImageSlider from './components/image-slider';
 import 'lazysizes';
 
+// LadiesHub Imports
+import DinamicNavbar, {calculatePadding} from './modules/DinamicNavbar';
+
 window.jQuery = window.$ = $;
 window.Vue = Vue;
 window.VeeValidate = VeeValidate;
 window.axios = axios;
+
+// LadiesHub utilities
+window.DinamicNavbar = DinamicNavbar;
+window.calculatePadding = calculatePadding;
 
 require("./bootstrap");
 require("ez-plus/src/jquery.ez-plus.js");
