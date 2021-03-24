@@ -1,7 +1,15 @@
 class calculatePadding {
     constructor(headSelector) {
         this.headSelector = headSelector;
+        window.addEventListener('DOMContentLoaded', () => {
+            this.setPadding();
+        });
+        window.addEventListener('resize', () => {
+            this.setPadding();
+        })
+
     }
+
     setPadding() {
         let size = document.querySelector(this.headSelector).offsetHeight;
         document.body.style.paddingTop=size + 'px';

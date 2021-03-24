@@ -416,14 +416,8 @@ if(auth()->guard('customer')->check()) {
          * Dinamic Navbar
          **************************************************/
 
+        // As the navbar is fixed, the body has to be padded acording to #header height 
         const padCalc = new calculatePadding('#header');
-        window.addEventListener('DOMContentLoaded', (event) => {
-            padCalc.setPadding();
-        });
-
-        window.addEventListener('resize', () => {
-            padCalc.setPadding();
-        })
                 
         const navController = new DinamicNavbar('#header-bottom', {
             disableWidth: 900 // width at witch swaps to mobile menu.
