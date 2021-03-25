@@ -1,5 +1,7 @@
 class calculatePadding {
-    constructor(headSelector) {
+    constructor(headSelector, paddedSelector = null) {
+        
+        this.paddedEl = paddedSelector ? document.querySelector(paddedSelector) : document;
         this.headSelector = headSelector;
         window.addEventListener('DOMContentLoaded', () => {
             this.setPadding();
