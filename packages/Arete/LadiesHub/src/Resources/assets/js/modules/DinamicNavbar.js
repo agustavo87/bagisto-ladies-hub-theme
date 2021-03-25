@@ -1,4 +1,15 @@
+/**
+ * Calculates and sets the padding of an element according to the
+ * height of another. Normally the padding of the body, acording to the
+ * height of navbar.
+ */
 class calculatePadding {
+
+    /**
+     * Constructs the padding controller
+     * @param {string} headSelector selector of the element to watch height
+     * @param {string} paddedSelector selector of the element to add the padding
+     */
     constructor(headSelector, paddedSelector = null) {
         
         this.paddedEl = paddedSelector ? document.querySelector(paddedSelector) : document;
@@ -18,6 +29,9 @@ class calculatePadding {
     }
 }
 
+/**
+ * Hides/Shows navbar when scrolling down/up.
+ */
 class DinamicNavbar {
     /**
      * @param {string} navbar - Selector 
@@ -65,6 +79,14 @@ class DinamicNavbar {
         this.recordHistory();
     }
 
+    /**
+     * Limit a number to a maximum and minumum value
+     * 
+     * @param {number} n the number to limit
+     * @param {number} max the max it can be
+     * @param {number} min the min it can be
+     * @returns {number}
+     */
     limit(n, max, min) {
         return  (n < min) ? min :
                 (n > max) ? max : 
@@ -115,6 +137,7 @@ class DinamicNavbar {
 
     /** 
      * @param {Window} w -the window object 
+     * 
      * @returns {boolean}
      */
     disabled(w = null) {
