@@ -595,9 +595,16 @@ h2 {
             a {
                 color: $font-dark;
                 border-bottom: 1px solid transparent;
+                display: grid;
                 // transition: border 0.25s ease-out;
                 &:hover {
                     color: $purple-600;
+                }
+
+                span {
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
                 }
             }
         }
