@@ -237,7 +237,7 @@ if(auth()->guard('customer')->check()) {
         
                     </ul>
         
-                    <span class="menu-box" >
+                    <span id="menu-box" class="menu-box" >
                         <x-icon-menu class="icon h-icon-menu" id="hammenu"></x-icon-menu>
                         <x-icon-menu-close class="icon h-icon-menu-close" id="hammenu-close" style="display: none"></x-icon-menu-close>
                     </span>
@@ -435,6 +435,7 @@ if(auth()->guard('customer')->check()) {
 
             function toggleDropdown(e) {
                 var currentElement = $(e.currentTarget);
+                console.log({currentElement});
 
                 if (currentElement.hasClass('icon-search')) {
                     // hide search icon
@@ -447,7 +448,9 @@ if(auth()->guard('customer')->check()) {
 
                     // display search area
                     $("#search-responsive").css("display", "block");
-                } else if (currentElement.hasClass('h-icon-menu')) {
+                } else if (currentElement.hasClass('menu-box') && !currentElement.hasClass('open') ) {
+                    console.log('menu-box')
+                    currentElement.addClass('open');
                     // show standard menu
                     $('#hammenu').hide();
                     $('#hammenu-close').show();
@@ -460,15 +463,17 @@ if(auth()->guard('customer')->check()) {
                     // close search bar
                     $("#search-responsive").css("display", "none");
                     $('#search').removeClass('hide');
-
+                    
                     // close search menu
                     $("#header-bottom").css("display", "none");
                     $('#hammenu-close').hide();
                     $('#hammenu').show();
+                    $('#menu-box').removeClass('open');
                 }
             }
 
-            $('body').delegate('#search, .h-icon-menu-close, .icon.h-icon-menu, .x-icon-menu-back', 'click', function(e) {
+            $('body').delegate('#search, .menu-box, .x-icon-menu-back', 'click', function(e) {
+                console.log('click')
                 toggleDropdown(e);
             });
 
