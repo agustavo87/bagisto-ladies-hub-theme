@@ -331,9 +331,9 @@
                             let count = response.data.compareProductsCount;
                             if (count > 0) {
                                 console.log('mostrando');
-                                $('#compare-dropdown-container').show();
+                                $('.compare-items-count').show();
                             } else {
-                                $('#compare-dropdown-container').hide();
+                                $('.compare-items-count').hide();
                                 $('.comparison-component').css('overflow-x', 'unset');
                             }
                             $('#compare-items-count').html(count);
@@ -352,10 +352,10 @@
                         console.log('compare-page: actualizando compare-count')
                         if(comparedItemsCount > 0) {
                             console.log('compare-page: con items, mostrando')
-                            $('#compare-dropdown-container').show();
+                            $('.compare-items-count').show();
                         } else {
                             console.log('compare-page: sin items, escondiend')
-                            $('#compare-dropdown-container').hide();
+                            $('.compare-items-count').hide();
                             $('.comparison-component').css('overflow-x', 'unset');
                         }
 

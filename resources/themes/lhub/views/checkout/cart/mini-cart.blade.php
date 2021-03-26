@@ -6,12 +6,12 @@
     <div class="dropdown-toggle">
         <a class="cart-link" href="{{ route('shop.checkout.cart.index') }}">
             <x-cart-icon class="cart-icon" />
+            <span class="count count-bag">{{ $cart->items->count() }}</span>
         </a>
 
-        <span class="name">
+        {{-- <span class="name" style="display: none">
             {{ __('shop::app.header.cart') }}
-            <span class="count"> ({{ $cart->items->count() }})</span>
-        </span>
+        </span> --}}
         <x-arrow-down-icon class="arrow-down-icon" />
 {{-- 
         <i class="icon arrow-down-icon">
@@ -108,7 +108,7 @@
 @else
     <div class="dropdown-toggle" style="pointer-events: none;">
             {{-- <span class="icon cart-icon"></span> --}}
-            <x-cart-icon class="cart-icon" />
-            <span class="name">{{ __('shop::app.minicart.cart') }}<span class="count"> ({{ __('shop::app.minicart.zero') }}) </span></span>
+            <x-cart-icon class="cart-icon disabled-cart" />
+            {{-- <span class="name" style="display: none">{{ __('shop::app.minicart.cart') }}<span class="count"> ({{ __('shop::app.minicart.zero') }}) </span></span> --}}
     </div>
 @endif

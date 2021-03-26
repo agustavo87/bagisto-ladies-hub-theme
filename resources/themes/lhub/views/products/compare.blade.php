@@ -110,9 +110,9 @@
                             let count = response.data.compareProductsCount;
                             if (count > 0) {
                                 console.log('mostrando');
-                                $('#compare-dropdown-container').show();
+                                $('.compare-items-count').show();
                             } else {
-                                $('#compare-dropdown-container').hide();
+                                $('.compare-items-count').hide();
                             }
                             $('#compare-items-count').html(count);
                         })
@@ -129,11 +129,11 @@
                         comparedItemsCount = comparedItems ? comparedItems.length : 0;
 
                         if(comparedItemsCount > 0) {
-                            $('#compare-dropdown-container').show();
+                            $('.compare-items-count').show();
                             console.log('compare: invitado, mostrando')
                         } else {
                             console.log('compare: invitado, escondiendo')
-                            $('#compare-dropdown-container').hide();
+                            $('.compare-items-count').hide();
                         }
 
                         $('#compare-items-count').html(comparedItemsCount);

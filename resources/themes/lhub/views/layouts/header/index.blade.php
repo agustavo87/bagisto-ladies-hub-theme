@@ -80,14 +80,14 @@ if(auth()->guard('customer')->check()) {
         
                        {{-- Compare --}}
         
-                        {!! view_render_event('bagisto.shop.layout.header.comppare-item.before') !!}
+                        {!! view_render_event('bagisto.shop.layout.header.compare-item.before') !!}
         
                         @php
                             $showCompare = core()->getConfigData('general.content.shop.compare_option') == "1" ? true : false
                         @endphp
         
                         @if ($showCompare)
-                            <li class="compare-dropdown-container" id="compare-dropdown-container" style="display: {{ $compareCount ? 'flex' : 'none' }}">
+                            <li class="compare-dropdown-container" id="compare-dropdown-container" >
                                 <a
                                     @auth('customer')
                                         href="{{ route('velocity.customer.product.compare') }}"
@@ -98,9 +98,11 @@ if(auth()->guard('customer')->check()) {
                                     @endguest
                                     >
                                     <x-compare-icon class="compare-icon"/>
-                                    <span class="name">
+                                    {{-- <span class="name">
                                         {{ __('shop::app.customer.compare.text') }}
-                                        <span class="count">(<span id="compare-items-count">{{ $compareCount }}</span>)
+                                    </span> --}}
+                                    <span class="count compare-items-count" style="display: {{ $compareCount ? 'flex' : 'none' }}">
+                                        <span id="compare-items-count">{{ $compareCount }}</span>
                                     </span>
                                 </a>
                             </li>
@@ -161,7 +163,7 @@ if(auth()->guard('customer')->check()) {
                         <li class="account-options">
                             <span class="dropdown-toggle">
                                 <x-account-icon class="account-icon" />
-                                <span class="name">{{ __('shop::app.header.account') }}</span>
+                                {{-- <span class="name">{{ __('shop::app.header.account') }}</span> --}}
                                 {{-- <i class="icon arrow-down-icon"></i> --}}
                                 <x-arrow-down-icon class="arrow-down-icon" />
                             </span>
@@ -495,7 +497,7 @@ if(auth()->guard('customer')->check()) {
                 let compareCount = comparedItems ? comparedItems.length : 0;
 
                 if(compareCount > 0) {
-                    $('#compare-dropdown-container').show();
+                    $('.compare-items-count').show();
                 } else {
                     console.log('head: escondiendo compare count')
                 }
