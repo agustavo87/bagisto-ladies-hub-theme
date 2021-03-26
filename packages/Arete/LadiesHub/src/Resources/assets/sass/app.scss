@@ -555,21 +555,23 @@ h2 {
     .product-card {
         // height: 26.5rem;
         position: relative;
-        padding: 1rem;
-        border-radius: 1rem;
+        // padding: 0 1rem 1rem 1rem;
+        padding: 0;
+        border-top-right-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         top: 0;
         transition: top 0.3s, box-shadow 0.3s;
         // border: 3px solid #f5f5f5;
-        box-shadow: 2px 2px 11px -5px #00000055;
+        box-shadow: 2px 2px 15px -7px #00000055;
         background-color: white;
         .product-image {
-            max-height: 350px;
+            // max-height: 350px;
             // max-width: 280px;
-            margin-left: 1rem;
-            margin-right: 1rem;
+            // margin-left: -1rem;
+            // margin-right: -1rem;
             margin-bottom: 10px;
             background: $background-color;
 
@@ -579,6 +581,10 @@ h2 {
                 object-fit:cover;
                 background-color: $product-image-background;
             }
+        }
+
+        .product-information {
+            padding: 0 1rem;
         }
 
         .product-name {
@@ -609,6 +615,12 @@ h2 {
             }
         }
 
+        .product-card-bottom {
+            padding: 1rem 1rem 1rem 1rem;
+            background-color: $gray-50;
+
+        }
+
         .cart-wish-wrap {
             display: flex;
             justify-content: space-between;
@@ -620,8 +632,8 @@ h2 {
                 text-transform: uppercase;
                 text-align: left;
                 font-size: 0.8rem;
-                box-shadow: 6px 6px 9px -8px $purple-500;
-                background-color: transparent;
+                box-shadow: none;
+                background-color: white;
                 color: $font-medium;
                 border: 1px solid #f2f2f2;
                 font-weight: $font-w-strong;
@@ -689,9 +701,9 @@ h2 {
         }
 
         .sticker {
-            border-bottom-right-radius: 1rem;
+            border-bottom-right-radius: 0;
             position: absolute;
-            top: 1rem;
+            top: 0;
             left: 0px;
             text-transform: uppercase;
             padding: 0.25rem 0.8rem;
@@ -715,7 +727,7 @@ h2 {
         // -webkit-box-shadow: 0px 2px 16px 4px rgba(40, 44, 63, 0.07);
         // -moz-box-shadow: 0px 2px 16px 4px rgba(40, 44, 63, 0.07);
         // box-shadow: 0px 2px 16px 4px rgba(40, 44, 63, 0.07);
-        box-shadow: 8px 8px 48px -23px rgb($black, 60%);
+        box-shadow: 2px 2px 15px -3px #00000055;
         // transition: .3s;
         top:-0.5rem;
         // outline: 1px solid $outline-hvr;
