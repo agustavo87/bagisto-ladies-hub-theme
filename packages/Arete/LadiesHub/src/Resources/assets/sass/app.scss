@@ -1075,7 +1075,7 @@ section.slider-block {
 }
 
 .header {
-    padding-top: 1rem;
+    padding-top: 0.5rem;
     margin-bottom: 0;
     user-select: none;
     background-attachment: white;
@@ -1092,7 +1092,7 @@ section.slider-block {
         // margin-bottom: 0.75rem;
         display: flex;
         height: 2.5rem;
-        border-bottom: 1px solid $gray-200;
+        // border-bottom: 1px solid $gray-200;
         padding-bottom: 0.5rem;
         max-width: 100%;
         width: auto;
@@ -1558,6 +1558,7 @@ section.slider-block {
         margin-left: auto;
         margin-right: auto;
         // margin-top: 0.5rem;
+        border-bottom: 1px solid $gray-200;
         overflow:hidden;
         background-color: $gray-50;
         
