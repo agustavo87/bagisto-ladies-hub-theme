@@ -2,7 +2,7 @@
     <section class="featured-products">
 
         <div class="featured-heading">
-            <h2> {{ __('shop::app.home.featured-products') }} </h2>
+            <h2 class="gradient-text"> {{ __('shop::app.home.featured-products') }} </h2>
             <hr class="featured-separator">
         </div>
 

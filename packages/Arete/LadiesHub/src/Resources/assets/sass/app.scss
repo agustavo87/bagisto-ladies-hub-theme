@@ -893,7 +893,7 @@ h2 {
                 width: 5rem;
                 height: 0.25rem;
                 border:none;
-                background-color: $gray-300;
+                background-color:#55555511;
                 margin: 1rem auto;
 
             }
@@ -1792,6 +1792,7 @@ section.slider-block {
         .header-top {
             padding: 0.5rem 0;
             height: 3.5rem;
+            border-bottom: 1px solid $gray-200;
 
             div.left-content ul.logo-container {
                 margin:0;
@@ -5725,3 +5726,8 @@ td {
  }
 
 
+ .gradient-text {
+    background: linear-gradient(#70D6FF, $purple-600);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+  }
