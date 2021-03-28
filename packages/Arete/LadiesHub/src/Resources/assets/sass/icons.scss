@@ -3,6 +3,9 @@
     background-size: cover;
     fill:currentColor;
     stroke: inherit;
+    // color: $font-medium;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .dropdown-right-icon {
@@ -40,15 +43,18 @@
 }
 
 .sort-icon {
-    background-image:URL('../images/icon-sort.svg');
-    width: 32px;
-    height: 32px;
+    // background-image:URL('../images/icon-sort.svg');
+    width: 1.5rem;
+    height: 1.5rem;
+    transform: rotate(90deg);
+    color: $font-medium;
 }
 
 .filter-icon {
-    background-image:URL('../images/icon-filter.svg');
-    width: 32px;
-    height: 32px;
+    // background-image:URL('../images/icon-filter.svg');
+    width: 1.5rem;
+    height: 1.5rem;
+    color: $font-medium;
 }
 
 .whishlist-icon {

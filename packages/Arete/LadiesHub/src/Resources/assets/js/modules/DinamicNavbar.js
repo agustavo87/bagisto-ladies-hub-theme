@@ -74,7 +74,7 @@ class DinamicNavbar {
     
     update() {
         if (this.disabled()) return;
-        let calcHeight = this.limit(this.navEl().offsetHeight + this.getChange(1/2), this.initHeight, 0);
+        let calcHeight = this.limit(this.navEl().offsetHeight + this.getChange(1/3), this.initHeight, 0);
         this.height(calcHeight);
         this.recordHistory();
     }

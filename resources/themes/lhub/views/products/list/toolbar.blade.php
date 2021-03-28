@@ -2,7 +2,7 @@
 
 {!! view_render_event('bagisto.shop.products.list.toolbar.before') !!}
 
-<div class="top-toolbar mb-35">
+<div class="top-toolbar">
 
     <div class="page-info">
         <span>
@@ -10,8 +10,16 @@
         </span>
 
         <span class="sort-filter">
-            <i class="icon sort-icon" id="sort" ></i>
-            <i class="icon filter-icon" id="filter"></i>
+            <span class="sort-wrap">
+                <x-icon-switch-horizontal class="icon sort-icon" id="sort" />
+                <x-icon-close class="icon sort-close" style="display: none" />
+            </span>
+            <span class="filter-wrap">
+                <x-icon-filter class="icon filter-icon" id="filter" />
+                <x-icon-close class="icon filter-close" style="display: none" />
+            </span>
+            {{-- <i class="icon sort-icon" id="sort" ></i>
+            <i class="icon filter-icon" id="filter"></i> --}}
         </span>
     </div>
 
