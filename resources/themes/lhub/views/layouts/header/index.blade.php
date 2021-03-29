@@ -27,6 +27,12 @@ if(auth()->guard('customer')->check()) {
                     <ul class="logo-container">
                         <li>
                             <a href="{{ route('shop.home.index') }}" aria-label="Logo">
+                                <div class="logo">
+                                    <strong>Ladies</strong><span class="soft">Hub</span>
+                                </div>
+                                <div class="logo-xs">
+                                    <strong>L</strong><span class="soft">H</span>
+                                </div>
                                 {{--
                                 Logo based on img src is not modifiable by css
         
@@ -36,8 +42,9 @@ if(auth()->guard('customer')->check()) {
                                     <img class="logo" src="{{ bagisto_asset('images/logo.svg') }}" alt="" />
                                 @endif 
                                 --}}
-                                <x-lhub-logo  class="logo" />
-                                <x-lhub-logo-xs  class="logo-xs" />
+                                
+                                {{-- <x-lhub-logo  class="logo" />
+                                <x-lhub-logo-xs  class="logo-xs" /> --}}
                             </a>
                         </li>
                     </ul>
