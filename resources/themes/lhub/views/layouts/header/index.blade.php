@@ -169,7 +169,9 @@ if(auth()->guard('customer')->check()) {
         
                         <li class="account-options">
                             <span class="dropdown-toggle">
-                                <x-account-icon class="account-icon" />
+                                <span class="account-icon-wrapper">
+                                    <x-account-icon class="account-icon" />
+                                </span>
                                 {{-- <span class="name">{{ __('shop::app.header.account') }}</span> --}}
                                 {{-- <i class="icon arrow-down-icon"></i> --}}
                                 <x-arrow-down-icon class="arrow-down-icon" />

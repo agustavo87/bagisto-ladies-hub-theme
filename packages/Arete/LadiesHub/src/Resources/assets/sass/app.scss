@@ -1351,13 +1351,26 @@ section.slider-block {
                         align-items: center;
                         box-sizing: content-box;
                         padding: 12px;
-                        
-                        .account-icon {
-                            // color: $font-light;
-                            // margin-right: 0.25rem;
+
+                        .account-icon-wrapper {
                             position: relative;
-                            top: -1px;
+                            height: $icon-size;
+                            width: $icon-size;
+                            background: #64748b;
+                            border-radius: 50%;
+                            overflow: hidden;
+                            border: 1px solid #64748b;
+                            
+                            .account-icon {
+                                position: relative;
+                                left: -5px;
+                                top: -5px;
+                                height: $account-icon-size;
+                                width: $account-icon-size;
+                                color: white;
+                            }
                         }
+                        
                     }
 
                     
@@ -1479,7 +1492,7 @@ section.slider-block {
                         a {
                             color: $listcolor;
                             &:hover {
-                                color: $brand-color;
+                                color: $font-light;
                             }
                         }
                     }
@@ -2022,7 +2035,7 @@ section.slider-block {
 
 /* footer */
 .footer {
-    background-color: $background-color;
+    background-color: $gray-200;
     padding-left: 10%;
     padding-right: 10%;
     width: 100%;
@@ -2046,16 +2059,17 @@ section.slider-block {
 
                     text-transform: uppercase;
                     color: $font-medium;
+                    font-weight: $font-w-strong;
                 }
 
                 .list-group {
                     padding-top: 25px;
 
                     a {
-                        color: $font-dark;
+                        color: $font-medium;
                         
                         &:hover {
-                            color: $brand-color;
+                            color: $font-dark;
                         }
                     }
 
