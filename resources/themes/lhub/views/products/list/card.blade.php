@@ -1,6 +1,18 @@
 {!! view_render_event('bagisto.shop.products.list.card.before', ['product' => $product]) !!}
 
+@php
+$max_length = 90;
+$shortDescription = trim( strip_tags($product->short_description) );
+if (strlen($shortDescription) > $max_length ) {
+    $shortDescription = substr($shortDescription, 0, $max_length) . '...';
+}
+    
+@endphp
+
 <div class="product-card">
+    {{-- <script>
+        console.log(@json($product, JSON_PRETTY_PRINT))
+    </script> --}}
 
     <?php $productBaseImage = productimage()->getProductBaseImage($product); ?>
 
@@ -15,7 +27,7 @@
             <a href="{{ route('shop.productOrCategory.index', $product->url_key) }}" title="{{ $product->name }}">
                 <img src="{{ $productBaseImage['medium_image_url'] }}" onerror="this.src='{{ asset('vendor/webkul/ui/assets/images/product/meduim-product-placeholder.png') }}'" alt="{{ $product->name }}" />
             <div class="additional-info">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                <p> {{ $shortDescription }} </p>
             </div>
             </a>
         </div>
