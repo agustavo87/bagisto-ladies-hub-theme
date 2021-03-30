@@ -434,9 +434,13 @@ if(auth()->guard('customer')->check()) {
             disableWidth: 900 // width at witch swaps to mobile menu.
         });
         navController.listen();
-        
+        // window.addEventListener('DOMContentLoaded', (event) => {
+        //     console.log('tratando de ir arriba');
+        //     window.setTimeout(() => window.scroll(0,0), 1) ;
+        // })
 
         $(document).ready(function() {
+            
 
             /************************************************** 
              * Menus / Dropdowns

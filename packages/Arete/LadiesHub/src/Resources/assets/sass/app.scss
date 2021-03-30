@@ -97,8 +97,23 @@ h2 {
 }
 
 .btn {
+    box-shadow: none;
     &.btn-primary {
         background-color: $brand-color;
+    }
+    &:hover { 
+        background-color: $purple-500;
+    }
+
+    &.btn-secondary {
+        border: 2px solid $purple-600;
+        background: transparent;
+        color: $purple-600;
+
+        &:hover {
+            background-color: $purple-600;
+            color: white;
+        }
     }
 }
 
@@ -2256,7 +2271,7 @@ section.slider-block {
             width: 100%;
             float: none;
             padding-right: 0px;
-            margin-top: -25px !important;
+            margin-top: -25px;
         }
 
         .category-block {
@@ -2290,7 +2305,7 @@ section.slider-block {
         font-size: 0.8rem;
         // border: 1px solid blue;
         box-sizing: border-box;
-        padding-bottom:0.25rem;
+        // padding-bottom:0.25rem;
         margin-bottom: 2rem;
 
         .page-info {
@@ -2310,6 +2325,7 @@ section.slider-block {
 
         .pager {
             float: right;
+            margin-bottom: 0.25rem;
 
             label {
                 margin-right: 5px;
@@ -2376,12 +2392,13 @@ section.slider-block {
                 display: flex;
                 flex-direction: column;
                 align-items: flex-end;
+                margin-bottom: 1rem;
                 // border-bottom: none;
 
                 .page-info {
                     // border-bottom: 1px solid $border-color;
                     line-height: 15px;
-                    margin-top: 10px;
+                    // margin-top: 10px;
 
 
                     > span {
@@ -2417,6 +2434,7 @@ section.slider-block {
 
             .responsive-layred-filter {
                 display: block;
+                margin-top: 0;
             }
         }
     }
@@ -3198,13 +3216,22 @@ section.product-detail {
 /* cart pages and elements css begins here */
 section.cart {
     width: 100%;
-    color: $font-dark;
-    margin-bottom: 80px;
-    margin-top: 20px;
+    // color: $font-dark;
+    margin-bottom: 5rem;
+    margin-top: 3rem;
+    
+    a:not(.btn) {
+        color: $font-dark;
 
-    .title {
-        font-size: 24px;
+        &:hover {
+            color:$font-medium;
+        }
     }
+
+
+    // .title {
+    //     font-size: 24px;
+    // }
 
     .cart-content {
         margin-top: 20px;
@@ -3223,13 +3250,15 @@ section.cart {
 
                 margin-top: 20px;
 
-                a.link {
-                    margin-right: 15px;
+                a {
+                    &.link {
+                        margin-right: 1rem;
+                    }
                 }
 
                 div {
                     button {
-                        margin-right: 15px;
+                        margin-right: 1rem;
                     }
                 }
             }
@@ -3265,21 +3294,25 @@ section.cart {
             flex-direction: column;
             justify-content: flex-start;
             width: 100%;
-            overflow-x: auto;
+            overflow: hidden;
 
             .item-title {
-                font-size: 18px;
-                margin-bottom: 10px;
-                font-weight: $font-w-bold;
+                font-size: 1rem;
+                // margin-bottom: 10px;
+                font-weight: $font-w-base;
 
                 a {
                     color: $font-dark;
+
+                    &:hover {
+                        color: $font-medium
+                    }
                 }
             }
 
             .price {
                 margin-bottom: 10px;
-                font-size: 18px;
+                font-size: 1rem;
                 font-weight: $font-w-bold;
             }
 
@@ -3296,8 +3329,8 @@ section.cart {
                 margin-top: 10px;
 
                 .control-group {
-                    font-size: 16px !important;
-                    margin: 0 15px 0 0;
+                    font-size: 1rem !important;
+                    margin: 0 1rem 0.5rem 0;
                     width: auto;
 
                     .wrap {
@@ -3306,7 +3339,8 @@ section.cart {
                     }
 
                     label {
-                        margin-right: 15px;
+                        margin: auto 1rem;
+                        font-size: 0.8rem;
                     }
 
                     .control {
@@ -3318,8 +3352,19 @@ section.cart {
                 }
 
                 .remove, .towishlist {
-                    line-height: 35px;
-                    margin-right: 15px;
+                    // line-height: 35px;
+                    // margin-right: 15px;
+                    font-size: 0.8rem;
+                    line-height: 1rem;
+                    margin: auto 1rem;
+
+                    a {
+                        color: $font-dark;
+
+                        &:hover {
+                            color: $font-medium;
+                        }
+                    }
                 }
             }
         }
@@ -3409,12 +3454,14 @@ section.cart {
 
 .order-summary {
     h3 {
-        font-size: 16px;
+        font-size: 1rem;
+        font-weight: $font-w-strong;
         margin-top: 0;
+        color: $font-dark;
     }
 
     .item-detail {
-        margin-top:12px;
+        margin-top:0.8rem;
 
         label {
             &.right {
@@ -3429,7 +3476,7 @@ section.cart {
         padding-top: 12px;
 
         label {
-            font-weight: $font-w-bold;
+            font-weight: $font-w-strong;
 
             &.right {
                 float:right;
@@ -3444,6 +3491,8 @@ section.cart {
 // cart pages responsive css start
 @media only screen and (max-width: 815px) {
     section.cart {
+        margin: 1rem 1rem 4rem 1rem;
+        width: calc(100% - 2rem);
         .cart-content {
             display: block;
 
@@ -5788,7 +5837,7 @@ td {
             }
 
             .category-container {
-                padding: 1rem 1rem 0 1rem;
+                padding: 0 1rem 0 1rem;
             }
         } 
     }

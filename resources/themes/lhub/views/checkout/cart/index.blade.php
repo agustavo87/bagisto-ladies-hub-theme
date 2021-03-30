@@ -7,9 +7,9 @@
 @section('content-wrapper')
     <section class="cart">
         @if ($cart)
-            <div class="title">
+            <h2 class="title">
                 {{ __('shop::app.checkout.cart.title') }}
-            </div>
+            </h2>
 
             <div class="cart-content">
                 <div class="left-side">
