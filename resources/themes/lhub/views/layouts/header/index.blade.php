@@ -24,31 +24,6 @@ if(auth()->guard('customer')->check()) {
         <div class="header" id="header">
             <div class="header-top">
                 <div class="left-content">
-                    <ul class="logo-container">
-                        <li>
-                            <a href="{{ route('shop.home.index') }}" aria-label="Logo">
-                                <div class="logo">
-                                    <strong>Ladies</strong><span class="soft">Hub</span>
-                                </div>
-                                <div class="logo-xs">
-                                    <strong>L</strong><span class="soft">H</span>
-                                </div>
-                                {{--
-                                Logo based on img src is not modifiable by css
-        
-                                @if ($logo = core()->getCurrentChannel()->logo_url)
-                                    <img class="logo" src="{{ $logo }}" alt="" />
-                                @else
-                                    <img class="logo" src="{{ bagisto_asset('images/logo.svg') }}" alt="" />
-                                @endif 
-                                --}}
-                                
-                                {{-- <x-lhub-logo  class="logo" />
-                                <x-lhub-logo-xs  class="logo-xs" /> --}}
-                            </a>
-                        </li>
-                    </ul>
-        
                     <ul class="search-container">
                         <li class="search-group">
                             <form role="search" action="{{ route('shop.search.index') }}" method="GET" style="display: inherit;">
@@ -73,6 +48,33 @@ if(auth()->guard('customer')->check()) {
                                     </button>
                                 </div>
                             </form>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="center-content">
+                    <ul class="logo-container">
+                        <li>
+                            <a href="{{ route('shop.home.index') }}" aria-label="Logo">
+                                <div class="logo">
+                                    <strong>Ladies</strong><span class="soft">Hub</span>
+                                </div>
+                                <div class="logo-xs">
+                                    <strong>L</strong><span class="soft">H</span>
+                                </div>
+                                {{--
+                                Logo based on img src is not modifiable by css
+        
+                                @if ($logo = core()->getCurrentChannel()->logo_url)
+                                    <img class="logo" src="{{ $logo }}" alt="" />
+                                @else
+                                    <img class="logo" src="{{ bagisto_asset('images/logo.svg') }}" alt="" />
+                                @endif 
+                                --}}
+                                
+                                {{-- <x-lhub-logo  class="logo" />
+                                <x-lhub-logo-xs  class="logo-xs" /> --}}
+                            </a>
                         </li>
                     </ul>
                 </div>
