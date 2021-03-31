@@ -10,9 +10,9 @@
 @push('scripts')
     <script type="text/x-template" id="compare-product-template">
         <section class="comparison-component">
-            <h1>
+            <h2>
                 {{ __('shop::app.customer.compare.compare_similar_items') }}
-            </h1>
+            </h2>
 
             <button
                 v-if="products.length > 0"
