@@ -56,12 +56,14 @@ if(auth()->guard('customer')->check()) {
                     <ul class="logo-container">
                         <li>
                             <a href="{{ route('shop.home.index') }}" aria-label="Logo">
-                                <div class="logo">
-                                    <strong>Ladies</strong><span class="soft">Hub</span>
-                                </div>
-                                <div class="logo-xs">
+                                {{-- <div  --}}
+                                    {{-- <strong>Ladies</strong><span class="soft">Hub</span> --}}
+                                <x-logo-lg  class="logo" />
+                                {{-- </div> --}}
+                                <x-logo-xs class="logo-xs" />
+                                {{-- <div class="logo-xs">
                                     <strong>L</strong><span class="soft">H</span>
-                                </div>
+                                </div> --}}
                                 {{--
                                 Logo based on img src is not modifiable by css
         
