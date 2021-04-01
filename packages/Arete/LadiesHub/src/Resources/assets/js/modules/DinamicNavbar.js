@@ -1,3 +1,5 @@
+import {limit} from '../support/utils';
+
 /**
  * Calculates and sets the padding of an element according to the
  * height of another. Usually the padding of the body, acording to the
@@ -75,24 +77,12 @@ class DinamicNavbar {
     
     update() {
         if (this.disabled()) return;
-        let calcHeight = this.limit(this.navEl().offsetHeight + this.getChange(1/3), this.initHeight, 0);
+        let calcHeight = limit(this.navEl().offsetHeight + this.getChange(1/3), this.initHeight, 0);
         this.height(calcHeight);
         this.recordHistory();
     }
 
-    /**
-     * Limit a number to a maximum and minumum value
-     * 
-     * @param {number} n the number to limit
-     * @param {number} max the max it can be
-     * @param {number} min the min it can be
-     * @returns {number}
-     */
-    limit(n, max, min) {
-        return  (n < min) ? min :
-                (n > max) ? max : 
-                n;
-    }
+  
 
     recordHistory() {
         this.lastPageYOffset = window.pageYOffset;
@@ -171,6 +161,13 @@ class DinamicNavbar {
         })
     }
 
+}
+
+class DinamicTopHeader {
+    constructor(topHedaerSelector, options) {
+        this.topHedaerSelector = topHedaerSelector;
+        this.topHeader = document.querySelector(topHedaerSelector);
+    }
 }
 
 export {DinamicNavbar as default, calculatePadding}
