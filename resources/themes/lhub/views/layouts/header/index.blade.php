@@ -296,6 +296,7 @@ if(auth()->guard('customer')->check()) {
 
 @push('scripts')
 
+{{-- Image Search Component --}}
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet" defer></script> 
 
@@ -426,6 +427,8 @@ if(auth()->guard('customer')->check()) {
         });
     </script> 
 
+{{-- Image Search Component / --}}
+
     <script>
         /************************************************** 
          * Dinamic Navbar
@@ -458,10 +461,11 @@ if(auth()->guard('customer')->check()) {
                     // hide search icon
                     currentElement.addClass('hide');
 
-                    // close standard menu if open
+                    // close nav menu if open
                     $('#hammenu-close').hide();
                     $('#hammenu').show();
-                    $("#header-bottom").css("display", "none");
+                    $("#header-bottom").css("display", ""); // is hidden by 
+                                                            // class css in mobile range
 
                     // display search area
                     $("#search-responsive").css("display", "block");
@@ -481,8 +485,8 @@ if(auth()->guard('customer')->check()) {
                     $("#search-responsive").css("display", "none");
                     $('#search').removeClass('hide');
                     
-                    // close search menu
-                    $("#header-bottom").css("display", "none");
+                    // close navbar
+                    $("#header-bottom").css("display", "");
                     $('#hammenu-close').hide();
                     $('#hammenu').show();
                     $('#menu-box').removeClass('open');
@@ -490,18 +494,19 @@ if(auth()->guard('customer')->check()) {
             }
 
             $('body').delegate('#search, .menu-box, .x-icon-menu-back', 'click', function(e) {
-                console.log('click')
+                // console.log('click')
                 toggleDropdown(e);
             });
 
             $(window).resize(function() {
-                // hide/show if open/closed some js dependent views
+                // reset if screen out of menu range. To be ready if back to 
+                // the range
                 if (window.innerWidth > 900) {
                     $('#hammenu-close').hide();
-                    $('#hammenu').show();
+                    $('#hammenu').show(); 
                     $("#header-bottom").css('display', '')
                     $('#search').removeClass('hide');
-                    $("#search-responsive").css("display", "none");
+                    $("#search-responsive").css("display", "");
                 }
             })
 

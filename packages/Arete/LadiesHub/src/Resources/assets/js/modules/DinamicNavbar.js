@@ -1,6 +1,6 @@
 /**
  * Calculates and sets the padding of an element according to the
- * height of another. Normally the padding of the body, acording to the
+ * height of another. Usually the padding of the body, acording to the
  * height of navbar.
  */
 class calculatePadding {
@@ -18,7 +18,8 @@ class calculatePadding {
             this.setPadding();
         });
         window.addEventListener('resize', () => {
-            this.setPadding();
+            // Updates after the rest of the UI has been updated
+            window.setTimeout( () =>  this.setPadding() );
         })
 
     }
