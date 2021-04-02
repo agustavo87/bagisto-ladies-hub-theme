@@ -1182,7 +1182,7 @@ section.slider-block {
     .header-top {
         // margin-bottom: 0.75rem;
         display: flex;
-        height: 4rem;
+        height: 5rem;
         // border-bottom: 1px solid $gray-200;
         // padding-bottom: 0.5rem;
         max-width: 100%;
@@ -1300,13 +1300,20 @@ section.slider-block {
                         align-items: center;
 
                         .logo {
-                            color: $true-gray-800;
+                            color: $gray-800;
                             // width: 2rem;
                             height: 1.5rem;
+                            transition-property: color, height;
+                            transition: .25s ease-in-out;
                             // height: 100%;
                             // display: flex;
                             // align-items: center;
                             // font-size: 1.5rem;
+
+                            &.logo-smaller {
+                                color:$gray-600;
+                                height: 1.25rem;
+                            }
                         }
                         .logo-xs {
                             display: none;

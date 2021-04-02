@@ -10,7 +10,7 @@ import ImageSlider from './components/image-slider';
 import 'lazysizes';
 
 // LadiesHub Imports
-import DinamicNavbar, {calculatePadding} from './modules/DinamicNavbar';
+import DinamicNavbar, {calculatePadding, DinamicTopHeader} from './modules/DinamicNavbar';
 
 window.jQuery = window.$ = $;
 window.Vue = Vue;
@@ -20,6 +20,7 @@ window.axios = axios;
 // LadiesHub utilities
 window.DinamicNavbar = DinamicNavbar;
 window.calculatePadding = calculatePadding;
+window.DinamicTopHeader = DinamicTopHeader;
 
 require("./bootstrap");
 require("ez-plus/src/jquery.ez-plus.js");

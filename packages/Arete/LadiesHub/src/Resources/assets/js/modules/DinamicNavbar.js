@@ -164,10 +164,92 @@ class DinamicNavbar {
 }
 
 class DinamicTopHeader {
-    constructor(topHedaerSelector, options) {
+    /**
+     * 
+     * @param {string} topHedaerSelector 
+     * @param {object} options 
+     * @param {number} options.maxOffset The end offset where the reduction of size ends. 
+     * @param {number} options.minSize The end size. 
+     * @param {number} options.disabled The width <= at wich the dinamic controller is disabled
+     * 
+     */
+    constructor(topHedaerSelector, options = {}) {
         this.topHedaerSelector = topHedaerSelector;
-        this.topHeader = document.querySelector(topHedaerSelector);
+        this.opt = {};
+        this.opt.maxOffset = options.maxOffset ?? 200;
+        this.opt.minSize = options.minSize ?? 48;
+        this.opt.disabledWidth = options.disabledWidth ?? 900;
+        this.opt.logoOffset = options.logoOffset ?? 100;
+        this.opt.logoClass = options.logoClass ?? 'logo-smaller'
+        this.opt.logoSelector = options.logoSelector ?? '#main-logo'
+    }
+
+    update() {
+        console.log('actualizando')
+        if (this.isDisabled()) {
+            console.log('deshabilitado')
+            this.cleanStyles();
+            return false;
+        } else if (!this.isInitialized) {
+            console.log('sin iniciar')
+            return this.init(); // TRIES TO INITIALIZE AND RETURN THE RESULT OF THE INTENT
+            // BUT NOT STATUS
+        }
+        console.log('modificando tamaño')
+        let actualSize = limit(this.startSize - (window.scrollY * this.speed), this.startSize, this.opt.minSize);
+        this.topHeader.style.height = actualSize + 'px';
+
+        this.updateLogo()
+
+
+        return true;
+    }
+
+    updateLogo() {
+        if (window.scrollY >= this.opt.logoOffset) {
+            if (!this.logo.classList.contains(this.opt.logoClass)) {
+                console.log('debería agregar la clase');
+                this.logo.classList.add(this.opt.logoClass);
+            }
+        } else if (this.logo.classList.contains(this.opt.logoClass)) {
+            console.log('debería quitar la clase');
+            this.logo.classList.remove(this.opt.logoClass);
+        }
+    }
+
+    init() {
+        // check the DOM after it is loaded;
+        if(this.isDisabled()) {
+            return false;
+        }
+        window.setTimeout(() => {
+            this.topHeader = document.querySelector(this.topHedaerSelector);
+            this.startSize = this.topHeader.offsetHeight;
+            this.speed = (this.startSize - this.opt.minSize) / this.opt.maxOffset;
+            this.logo = document.querySelector(this.opt.logoSelector)
+            this.isInitialized = true;
+        })
+        return true; // initialization startet BUT NOT COMPLETED YET!
+    }
+
+    isDisabled() {
+        return window.innerWidth <= this.opt.disabledWidth;
+    }
+
+    cleanStyles() {
+        console.log('por limpiar')
+        if (!this.isInitialized) return false;
+        console.log('limpiando')
+        this.topHeader.style.height = '';
+    }
+
+    listen() {
+        window.addEventListener('scroll', () => this.update())
+
+        window.addEventListener('resize', () => this.update())
+
+        window.addEventListener('DOMContentLoaded', () => this.init())
     }
 }
 
-export {DinamicNavbar as default, calculatePadding}
+export {DinamicNavbar as default, calculatePadding, DinamicTopHeader}

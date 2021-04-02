@@ -22,7 +22,7 @@ if(auth()->guard('customer')->check()) {
 <div class="header-wrapper">
     <div class="main-container-wrapper">
         <div class="header" id="header">
-            <div class="header-top">
+            <div class="header-top" id="header-top">
                 <div class="left-content">
                     <ul class="search-container">
                         <li class="search-group">
@@ -58,7 +58,7 @@ if(auth()->guard('customer')->check()) {
                             <a href="{{ route('shop.home.index') }}" aria-label="Logo">
                                 {{-- <div  --}}
                                     {{-- <strong>Ladies</strong><span class="soft">Hub</span> --}}
-                                <x-logo-lg  class="logo" />
+                                <x-logo-lg  class="logo" id="main-logo" />
                                 {{-- </div> --}}
                                 <x-logo-xs class="logo-xs" />
                                 {{-- <div class="logo-xs">
@@ -445,6 +445,10 @@ if(auth()->guard('customer')->check()) {
         //     console.log('tratando de ir arriba');
         //     window.setTimeout(() => window.scroll(0,0), 1) ;
         // })
+        const topHeadController = new DinamicTopHeader('#header-top')
+        topHeadController.listen();
+
+        
 
         $(document).ready(function() {
             
