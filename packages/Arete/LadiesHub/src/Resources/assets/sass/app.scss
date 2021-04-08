@@ -506,13 +506,27 @@ h2 {
     //     // margin-top: 40px;
     // }
 }
-/* no search results */
-.search-result-status {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+
+
+.search-results-container {
+    margin: 2rem 0 3rem 0;
+
+    .search-result-status {
+        margin: 2rem 1rem;
+        width: calc(100% - 2rem);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        
+    
+        &.success {
+            margin-bottom: 2rem;
+            font-size: 0.8rem;
+            justify-content: flex-end;
+            border-bottom: 1px solid $gray-100;
+        }
+    }
 }
 
 // .grid-container {
