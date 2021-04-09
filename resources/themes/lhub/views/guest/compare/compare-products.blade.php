@@ -72,6 +72,17 @@
     
                                         @case('addToCartHtml')
                                             <div class="action">
+                                                {{-- add to cart --}}
+                                                <form :action="routeAddToCart(product.id)" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="product_id" value="product.id}}">
+                                                    <input type="hidden" name="quantity" value="1">                                        
+                                                    <button  class="btn btn-sm btn-primary addtocart">
+                                                        {{ __('shop::app.products.add-to-cart')  }}
+                                                    </button>
+                                                </form>
+                                                {{-- /add to cart --}}
+
                                                 {{-- <div v-html="product.addToCartHtml"></div> --}}
                                                 <span class="icon white-cross-sm-icon remove-product" @click="removeProductCompare(product.id)"></span>
                                             </div>
@@ -183,6 +194,9 @@
             data: function () {
                 return {
                     'products': [],
+                    'route':{
+                        addtocart: '{{ route('cart.add', '%param_1%') }}'
+                    },
                     'isProductListLoaded': false,
                     'baseUrl': "{{ url()->to('/') }}",
                     'attributeOptions': JSON.parse(@json($attributeOptionTranslations)),
@@ -397,12 +411,12 @@
 
                         $('#compare-items-count').html(comparedItemsCount);
                     }
+                },
+
+                'routeAddToCart': function (product_id) {
+                    return this.route.addtocart.replace('%param_1%', product_id)
                 }
             }
         });
-    </script>
-    <script>
-        console.log(@json($comparableAttributes))
-        console.log({!! $attributeOptionTranslations !!})
     </script>
 @endpush
