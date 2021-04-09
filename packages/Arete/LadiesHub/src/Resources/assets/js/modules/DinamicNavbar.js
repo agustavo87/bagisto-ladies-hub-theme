@@ -185,17 +185,17 @@ class DinamicTopHeader {
     }
 
     update() {
-        console.log('actualizando')
+        // console.log('actualizando')
         if (this.isDisabled()) {
-            console.log('deshabilitado')
+            // console.log('deshabilitado')
             this.cleanStyles();
             return false;
         } else if (!this.isInitialized) {
-            console.log('sin iniciar')
+            // console.log('sin iniciar')
             return this.init(); // TRIES TO INITIALIZE AND RETURN THE RESULT OF THE INTENT
             // BUT NOT STATUS
         }
-        console.log('modificando tamaño')
+        // console.log('modificando tamaño')
         let actualSize = limit(this.startSize - (window.scrollY * this.speed), this.startSize, this.opt.minSize);
         this.topHeader.style.height = actualSize + 'px';
 
@@ -208,11 +208,11 @@ class DinamicTopHeader {
     updateLogo() {
         if (window.scrollY >= this.opt.logoOffset) {
             if (!this.logo.classList.contains(this.opt.logoClass)) {
-                console.log('debería agregar la clase');
+                // console.log('debería agregar la clase');
                 this.logo.classList.add(this.opt.logoClass);
             }
         } else if (this.logo.classList.contains(this.opt.logoClass)) {
-            console.log('debería quitar la clase');
+            // console.log('debería quitar la clase');
             this.logo.classList.remove(this.opt.logoClass);
         }
     }
@@ -237,9 +237,9 @@ class DinamicTopHeader {
     }
 
     cleanStyles() {
-        console.log('por limpiar')
+        // console.log('por limpiar')
         if (!this.isInitialized) return false;
-        console.log('limpiando')
+        // console.log('limpiando')
         this.topHeader.style.height = '';
     }
 
