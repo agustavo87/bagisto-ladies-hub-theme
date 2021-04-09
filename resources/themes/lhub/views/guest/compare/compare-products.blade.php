@@ -1,6 +1,6 @@
 @php
     $attributeRepository = app('\Webkul\Attribute\Repositories\AttributeFamilyRepository');
-    $comparableAttributes = $attributeRepository->getComparableAttributesBelongsToFamily();
+    $comparableAttributes = $attributeRepository->getComparableAttributesBelongsToFamily()->unique();
 
     $locale = request()->get('locale') ?: app()->getLocale();
 
@@ -8,6 +8,9 @@
 @endphp
 
 @push('scripts')
+<script>
+    console.log(@json($comparableAttributes))
+</script>
     <script type="text/x-template" id="compare-product-template">
         <section class="comparison-component">
             <h2>
