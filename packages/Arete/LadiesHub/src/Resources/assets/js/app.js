@@ -45,6 +45,40 @@ Vue.filter('currency', function (value, argument) {
     return accounting.formatMoney(value, argument);
 })
 
+// for compilation of html coming from server
+Vue.component('vnode-injector', {
+    functional: true,
+    props: ['nodes'],
+    render(h, {props}) {
+        return props.nodes;
+    }
+});
+
+Vue.mixin({
+    methods: {
+        getDynamicHTML: function (input) {
+            var _staticRenderFns;
+            const { render, staticRenderFns } = Vue.compile(input);
+
+            if (this.$options.staticRenderFns.length > 0) {
+                _staticRenderFns = this.$options.staticRenderFns;
+            } else {
+                _staticRenderFns = this.$options.staticRenderFns = staticRenderFns;
+            }
+
+            try {
+                var output = render.call(this, this.$createElement);
+            } catch (exception) {
+                console.log(this.__('error.something_went_wrong'));
+            }
+
+            this.$options.staticRenderFns = _staticRenderFns;
+
+            return output;
+        }
+    }
+})
+
 $(document).ready(function () {
     const app = new Vue({
         el: "#app",
@@ -140,5 +174,7 @@ $(document).ready(function () {
         }
     });
 
+
+//sds
     window.app = app;
 });

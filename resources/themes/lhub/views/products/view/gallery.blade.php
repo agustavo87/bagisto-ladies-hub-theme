@@ -109,7 +109,7 @@
             imgs.forEach((src) => {
                 let img = new Image();
                 $if(img).emit('load', function () {
-                    console.log('cargado', img);
+                    // console.log('cargado', img);
                     let index = preloadImg.list.indexOf(img);
                     if (index !== -1) {
                         preloadImg.list.splice(index, 1);
@@ -128,7 +128,7 @@
         preloadImg(imgList);
 
 
-        console.log('gallery images', galleryImages);
+        // console.log('gallery images', galleryImages);
 
         Vue.component('product-gallery', {
 

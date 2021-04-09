@@ -8,9 +8,7 @@
 @endphp
 
 @push('scripts')
-<script>
-    console.log(@json($comparableAttributes))
-</script>
+
     <script type="text/x-template" id="compare-product-template">
         <section class="comparison-component">
             <h2>
@@ -42,6 +40,8 @@
                                 'admin_name' => __('velocity::app.customer.compare.actions'),
                             ]]);
                         @endphp
+
+
     
                         @foreach ($comparableAttributes as $attribute)
                             <tr>
@@ -53,7 +53,7 @@
                                     @switch ($attribute['code'])
                                         @case('name')
                                             <a :href="`${baseUrl}/${product.url_key}`" class="unset remove-decoration active-hover">
-                                                <h3 class="fw6 fs18 mt-0" v-text="product['{{ $attribute['code'] }}']"></h3>
+                                                <h3 class="product-name" v-text="product['{{ $attribute['code'] }}']"></h3>
                                             </a>
                                             @break
     
@@ -72,8 +72,7 @@
     
                                         @case('addToCartHtml')
                                             <div class="action">
-                                                <div v-html="addToCartHtml"></div>
-    
+                                                {{-- <div v-html="product.addToCartHtml"></div> --}}
                                                 <span class="icon white-cross-sm-icon remove-product" @click="removeProductCompare(product.id)"></span>
                                             </div>
                                             @break
@@ -106,7 +105,42 @@
                                                     @break;
     
                                                 @case('select')
-                                                    <span v-if="product.product['{{ $attribute['code'] }}']" v-html="getAttributeOptions(product['{{ $attribute['code'] }}'] ? product : product.product['{{ $attribute['code'] }}'] ? product.product : null, '{{ $attribute['code'] }}', 'single')" class="fs16"></span>
+                                                    <span 
+                                                        class="fs16"
+                                                        v-if="product['{{ $attribute['code'] }}']" 
+                                                        v-html="
+                                                            getAttributeOptions(
+                                                                product['{{ $attribute['code'] }}'] 
+                                                                    ? product 
+                                                                    : product.product['{{ $attribute['code'] }}'] 
+                                                                        ? product.product 
+                                                                        : null, 
+                                                                '{{ $attribute['code'] }}', 
+                                                                'single'
+                                                            )
+                                                        " 
+                                                    >
+                                                    </span>
+                                                    <span v-else class="fs16">__</span>
+                                                    @break;
+
+                                                @case('multiselect')
+                                                    <span 
+                                                        class="fs16"
+                                                        v-if="product['{{ $attribute['code'] }}']" 
+                                                        v-html="
+                                                            getAttributeOptions(
+                                                                product['{{ $attribute['code'] }}'] 
+                                                                    ? product 
+                                                                    : product.product['{{ $attribute['code'] }}'] 
+                                                                        ? product.product 
+                                                                        : null, 
+                                                                '{{ $attribute['code'] }}', 
+                                                                'single'
+                                                            )
+                                                        " 
+                                                    >
+                                                    </span>
                                                     <span v-else class="fs16">__</span>
                                                     @break;
     
@@ -246,26 +280,26 @@
                     // this.updateCompareCount();
                 },
 
-                'getDynamicHTML': function (input) {
-                    var _staticRenderFns;
-                    const { render, staticRenderFns } = Vue.compile(input);
+                // 'getDynamicHTML': function (input) {
+                //     var _staticRenderFns;
+                //     const { render, staticRenderFns } = Vue.compile(input);
 
-                    if (this.$options.staticRenderFns.length > 0) {
-                        _staticRenderFns = this.$options.staticRenderFns;
-                    } else {
-                        _staticRenderFns = this.$options.staticRenderFns = staticRenderFns;
-                    }
+                //     if (this.$options.staticRenderFns.length > 0) {
+                //         _staticRenderFns = this.$options.staticRenderFns;
+                //     } else {
+                //         _staticRenderFns = this.$options.staticRenderFns = staticRenderFns;
+                //     }
 
-                    try {
-                        var output = render.call(this, this.$createElement);
-                    } catch (exception) {
-                        console.log(this.__('error.something_went_wrong'));
-                    }
+                //     try {
+                //         var output = render.call(this, this.$createElement);
+                //     } catch (exception) {
+                //         console.log(this.__('error.something_went_wrong'));
+                //     }
 
-                    this.$options.staticRenderFns = _staticRenderFns;
+                //     this.$options.staticRenderFns = _staticRenderFns;
 
-                    return output;
-                },
+                //     return output;
+                // },
 
                 'isMobile': function () {
                     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -293,7 +327,6 @@
 
                 'getAttributeOptions': function (productDetails, attributeValues, type) {
                     var attributeOptions = '__';
-
                     if (productDetails && attributeValues) {
                         var attributeItems;
 
@@ -367,5 +400,9 @@
                 }
             }
         });
+    </script>
+    <script>
+        console.log(@json($comparableAttributes))
+        console.log({!! $attributeOptionTranslations !!})
     </script>
 @endpush
