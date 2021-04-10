@@ -48,6 +48,12 @@
 
     <div id="app">
         <flash-wrapper ref='flashes'></flash-wrapper>
+        {{-- <div class="alert-wrapper">
+            <div class="alert alert-success">
+                <span class="icon white-cross-sm-icon"></span>
+                <p> Alerta de prueba. Este es un mensaje relativamente largo para ver como lo manejaría </p>
+            </div>
+        </div> --}}
 
         {!! view_render_event('bagisto.shop.layout.header.before') !!}
 
