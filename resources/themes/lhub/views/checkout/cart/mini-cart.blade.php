@@ -18,7 +18,7 @@
         </i> --}}
     </div>
 
-    <div class="dropdown-list" style="display: none; top: 52px; right: 0px;">
+    <div class="dropdown-list">
         <div class="dropdown-container">
             <div class="dropdown-cart">
                 <div class="dropdown-header">

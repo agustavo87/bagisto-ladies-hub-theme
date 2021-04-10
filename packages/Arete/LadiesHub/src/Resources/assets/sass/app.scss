@@ -49,6 +49,18 @@ body {
     font-family: $sans-font-family;
 }
 
+
+ a:not(.btn) {
+        text-decoration: none;
+        &:active, &:focus, &:link, &:visited {
+            color: $purple-900;
+        }
+        &:hover {
+            color: $purple-600;
+        }
+    }
+
+
 textarea {
     resize: none;
 }
@@ -732,7 +744,7 @@ hr {
 
 
                 &:hover {
-                    background-color: $purple-600;
+                    background-color: $purple-900;
                     color: white;
                     border: 1px solid transparent;
                 }
@@ -1187,6 +1199,9 @@ section.slider-block {
 }
 
 .header {
+    .dropdown-list {
+        box-shadow: 3px 8px 13px -3px rgba(0,0, 0, 16%);
+    }
     // padding-top: 0.5rem;
     margin-bottom: 0;
     user-select: none;
@@ -1529,7 +1544,7 @@ section.slider-block {
 
                 ul.dropdown-list {
                     display: none;
-                    margin-top: 4px;
+                    // margin-top: 4px;
 
                     li {
                         border-right: none;
@@ -1578,7 +1593,8 @@ section.slider-block {
 
                 .cart-dropdown-container {
                     .dropdown-list {
-                        width: 387px;
+                        width: 25rem;
+                        right: 0;
                     }
 
                     .dropdown-list .dropdown-container {
@@ -1634,9 +1650,10 @@ section.slider-block {
                         }
 
                         .item-details .item-name {
-                            font-size: 16px;
-                            font-weight: $font-w-strong;
-                            margin-bottom: 8px;
+                            font-size: 1rem;
+                            font-weight: $true-gray-500;
+                            color: $font-medium;
+                            // margin-bottom: 8px;
                         }
 
                         .item-details .item-options {
