@@ -4,14 +4,8 @@
     $width = (core()->getConfigData('catalog.products.storefront.buy_now_button_display') == 1) ? '49' : '95';
 @endphp
 
-<button type="submit" class="btn btn-lg btn-primary addtocart" {{ ! $product->isSaleable() ? 'disabled' : '' }}
-style="width: <?php echo $width.'%';?>;">
-<span class="content-default">
+<button type="submit" class="btn btn-lg btn-primary addtocart" {{ ! $product->isSaleable() ? 'disabled' : '' }}>
   {{ ($product->type == 'booking') ?  __('shop::app.products.book-now') :  __('shop::app.products.add-to-cart') }}
-</span>
-<span class="content-sm">
-    {{-- {{ ($product->type == 'booking') ?  __('shop::app.products.book-now') :  __('shop::app.products.add-to-cart') }} --}}
-</span>
 </button>
 
 {!! view_render_event('bagisto.shop.products.add_to_cart.after', ['product' => $product]) !!}
