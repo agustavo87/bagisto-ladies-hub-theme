@@ -24,6 +24,9 @@
     background: #555;
 }
 
+html {
+    font-size: 16px;
+}
 
 /* override User Agent Styles */
 body {
@@ -33,7 +36,6 @@ body {
     max-width: 100%;
     width: auto;
     color: $font-medium;
-    font-size: $font-base-px;
     line-height: 1.5em;
     letter-spacing: 0;
 }
@@ -1468,22 +1470,20 @@ section.slider-block {
                         position:absolute;
                         top: 4px;
                         right:0;
-                        width: 18px;
-                        height: 18px;
-                        background-color: $purple-400;
-                        border: 1px solid white;
-                        box-sizing: border-box;
                         display: flex;
                         justify-content: center;
                         align-items: center;
+                        background-color: $purple-400;
+                        width: 19px;
+                        height: 19px;
+                        border: 1px solid white;
                         border-radius: 50%;
 
                         #compare-items-count {
-                            display: block;
                             color:white;
                             font-size: 10px;
-                            line-height: 10px;
-                            font-weight: $font-w-bold;
+                            font-weight: 700;
+                            line-height: 11px;
                         }
                     }
                     .name {
@@ -1526,21 +1526,20 @@ section.slider-block {
                         position: absolute;
                         top: 4px;
                         right: 0;
+                        display:flex;
+                        justify-content: center;
+                        align-items:center;
                         background-color: $purple-400;
-                        display: flex;
-                        width: 18px;
-                        height: 18px;
+                        width: 19px;
+                        height: 19px;
                         border: 1px solid white;
                         border-radius: 50%;
-                        justify-content: center;
-                        box-sizing: border-box;
-                        align-items: center;
+                        
                         .count {
                             color: white;
-                            font-weight: $font-w-bold;
                             font-size: 10px;
-                            line-height: 10px;
-                            // height: 12px;
+                            font-weight: 700;
+                            line-height: 11px;
                         }
                     }
                 }
