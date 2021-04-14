@@ -84,10 +84,11 @@
                 </tbody>
             </table>
 
-
-            <button type="submit" @click="showModal('deleteProfile')" class="btn btn-lg btn-primary mt-10">
-                {{ __('shop::app.customer.account.address.index.delete') }}
-            </button>
+            <div>
+                <button type="submit" @click="showModal('deleteProfile')" class="btn btn-lg btn-primary mt-10">
+                    {{ __('shop::app.customer.account.address.index.delete') }}
+                </button>
+            </div>
 
             <form method="POST" action="{{ route('customer.profile.destroy') }}" @submit.prevent="onSubmit">
                 @csrf

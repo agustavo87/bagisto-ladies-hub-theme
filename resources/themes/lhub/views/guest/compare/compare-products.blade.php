@@ -11,16 +11,14 @@
 
     <script type="text/x-template" id="compare-product-template">
         <section class="comparison-component">
-            <h2>
-                {{ __('shop::app.customer.compare.compare_similar_items') }}
-            </h2>
-
-            <button
-                v-if="products.length > 0"
-                class="btn btn-primary btn-md {{ core()->getCurrentLocale()->direction == 'rtl' ? 'pull-left' : 'pull-right' }}"
-                @click="removeProductCompare('all')">
-                {{ __('shop::app.customer.account.wishlist.deleteall') }}
-            </button>
+            <div>
+                <button
+                    v-if="products.length > 0"
+                    class="btn btn-primary btn-md {{ core()->getCurrentLocale()->direction == 'rtl' ? 'pull-left' : 'pull-right' }}"
+                    @click="removeProductCompare('all')">
+                    {{ __('shop::app.customer.account.wishlist.deleteall') }}
+                </button>
+            </div>
 
             {!! view_render_event('bagisto.shop.customers.account.compare.view.before') !!}
 
@@ -58,7 +56,7 @@
                                             @break
     
                                         @case('product_image')
-                                            <a :href="`${baseUrl}/${product.url_key}`" class="unset">
+                                            <a :href="`${baseUrl}/${product.url_key}`" class="unset product-image">
                                                 <img
                                                     class="image-wrapper"
                                                     :src="product['{{ $attribute['code'] }}']"
