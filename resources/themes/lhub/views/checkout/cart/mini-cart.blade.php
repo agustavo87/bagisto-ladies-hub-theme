@@ -6,7 +6,11 @@
     <div class="dropdown-toggle">
         <a class="cart-link" href="{{ route('shop.checkout.cart.index') }}">
             <x-cart-icon class="cart-icon" />
-            <span class="count count-bag">{{ $cart->items->count() }}</span>
+            <span class="count-bag">
+                <span class="count">
+                    {{ $cart->items->count() }}
+                </span>
+            </span>
         </a>
 
         {{-- <span class="name" style="display: none">
