@@ -600,7 +600,7 @@ hr {
 
     .product-grid-3 {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
         grid-gap: 1.5rem;
         grid-auto-rows: auto;
         justify-items: center;
@@ -609,7 +609,7 @@ hr {
 
     .product-card {
         // height: 26.5rem;
-        max-width: 17rem;
+        max-width: 270px;
         position: relative;
         // padding: 0 1rem 1rem 1rem;
         padding: 0;
@@ -859,7 +859,7 @@ hr {
     //product components
     @media only screen and (max-width: 551px) {
         .product-grid-3 {
-            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
             // grid-column-gap: 1.5rem;
             justify-items: center;
         }
@@ -1230,11 +1230,15 @@ section.slider-block {
         // border-bottom: 1px solid $gray-200;
         // padding-bottom: 0.5rem;
         max-width: 100%;
-        width: auto;
-        margin-left: auto;
-        margin-right: auto;
+        // width: auto;
+        // margin-left: auto;
+        // margin-right: auto;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
+
+        div {
+            flex: 33.33%;
+        }
 
         div.left-content {
             display: flex;
@@ -1325,8 +1329,11 @@ section.slider-block {
         }
 
         div.center-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             ul.logo-container {
-                margin-right: 2rem;
+                // margin-right: 2rem;
                 height: 100%;
 
                 li {
@@ -1371,6 +1378,9 @@ section.slider-block {
         }
 
         div.right-content {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
             color: $font-medium;
             .right-content-menu {
                 font-size: 0.8rem;
@@ -1710,8 +1720,8 @@ section.slider-block {
             .search-box {
                 .icon-search {
                     fill: $gray-500;
-                    height: 1.5rem;
-                    width: 1.5rem;
+                    height: $x1 * 1.5;
+                    width: $x1 * 1.5;
                     position: relative;
                     top: 1px;
                     cursor: pointer;
@@ -1947,18 +1957,24 @@ section.slider-block {
             padding: 0.5rem 0;
             height: 3.5rem;
             border-bottom: 1px solid $gray-200;
+            div {
+                flex:1
+            }
 
             div.left-content {
                 display: none;
             }
 
-            div.center-content ul.logo-container {
-                margin:0;
-                li a .logo {
-                    color: $gray-500;
-                    padding: 0 .5rem;
+            div.center-content{
+                justify-content: flex-start;
+                ul.logo-container {
+                    margin:0;
+                    li a .logo {
+                        color: $gray-500;
+                        padding: 0 .5rem;
+                    }
                 }
-            }
+            } 
 
             div.right-content {
                 display: inherit;
@@ -5075,6 +5091,10 @@ section.review {
     //header css start here
     .header {
         .header-top {
+            // display: flex;
+            // justify-content: center;
+            // align-items: center;
+
             div.left-content {
                 ul.search-container li.search-group {
                     .search-field {
@@ -5104,6 +5124,9 @@ section.review {
             }
 
             div.center-content {
+                // display: flex;
+                // justify-content: center;
+                // align-items: center;
                 ul.logo-container {
                     margin-right: 0px;
                     margin-left: 12px;
@@ -5112,6 +5135,9 @@ section.review {
 
             div.right-content {
                 color: $font-light;
+                // display: flex;
+                // justify-content: center;
+                // align-items: center;
                 .right-content-menu {
                     > li {
                         border-right: 2px solid $border-color;

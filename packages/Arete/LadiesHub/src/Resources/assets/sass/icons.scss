@@ -4,8 +4,8 @@
     fill:currentColor;
     stroke: inherit;
     // color: $font-medium;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: $x1 * 1.5;
+    height: $x1 * 1.5;
 }
 
 .dropdown-right-icon {
@@ -17,8 +17,8 @@
 }
 
 .h-icon-menu-close {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: $x1 * 1.5;
+    height: $x1 * 1.5;
     stroke: $gray-500;
     fill:none;
 }
@@ -44,23 +44,23 @@
 
 .sort-icon {
     // background-image:URL('../images/icon-sort.svg');
-    width: 1.5rem;
-    height: 1.5rem;
+    width: $x1 * 1.5;
+    height: $x1 * 1.5;
     transform: rotate(90deg);
     color: $gray-500;
 }
 
 .filter-icon {
     // background-image:URL('../images/icon-filter.svg');
-    width: 1.5rem;
-    height: 1.5rem;
+    width: $x1 * 1.5;
+    height: $x1 * 1.5;
     color: $gray-500;
 }
 
 .whishlist-icon {
     // background-image:URL('../images/wishlist.svg');
-    width: 1.5rem;
-    height: 1.5rem;
+    width: $x1 * 1.5;
+    height: $x1 * 1.5;
 }
 
 .share-icon {
@@ -71,8 +71,8 @@
 
 .h-icon-menu {
     // background-image:URL('../images/icon-menu.svg');
-    width: 1.5rem;
-    height: 1.5rem;
+    width: $x1 * 1.5;
+    height: $x1 * 1.5;
     stroke: $gray-500;
     fill:none;
 }
@@ -110,20 +110,20 @@
 
 .cart-icon {
     // background-image: url("../images/icon-cart.svg");
-    width: 1.5rem;
-    height: 1.5rem;
+    width: $x1 * 1.5;
+    height: $x1 * 1.5;
 }
 
 .compare-icon {
     // background-image: url("../images/compare_arrows.png");
-    width: 1.5rem;
-    height: 1.5rem;
+    width: $x1 * 1.5;
+    height: $x1 * 1.5;
 }
 
 .wishlist-icon {
     // background-image: url('../images/wishlist.svg');
-    width: 1.5rem;
-    height: 1.5rem;
+    width: $x1 * 1.5;
+    height: $x1 * 1.5;
 }
 
 .icon-arrow-up {
@@ -141,15 +141,15 @@
 
 .arrow-down-icon {
     background: none;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: $x1 * 1.5;
+    height: $x1 * 1.5;
 }
 
 .active>.arrow-down-icon {
     background: none;
     color: $font-dark;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: $x1 * 1.5;
+    height: $x1 * 1.5;
 }
 
 .expand-icon {
@@ -197,7 +197,7 @@
 .account-icon {
     background: none;
     width: auto;
-    height: 1.5rem;
+    height: $x1 * 1.5;
 }
 
 .star-icon {
