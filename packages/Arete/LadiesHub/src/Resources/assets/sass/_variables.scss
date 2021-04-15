@@ -65,7 +65,10 @@ $font-2xl: 3rem;
 $font-3xl: 4rem;
 
 $x1: $font-base-px;
+$x1_5: $font-base-px * 1.5;
+$x1_25: $font-base-px * 1.25;
 $x2: $font-base-px * 2;
+$x3_5: $font-base-px * 3.5;
 
 $info-color: #204d74;
 
@@ -75,8 +78,8 @@ $brand-color: $purple-900;
 $background-color: $true-gray-200;
 $review-details: $gray-400;
 
-$icon-size: 1.5rem;
-$account-icon-size: 2rem;
+$icon-size: $x1_5;
+$account-icon-size: $x2;
 $account-border-size: 1px;
 
 $border-color: $gray-100;
