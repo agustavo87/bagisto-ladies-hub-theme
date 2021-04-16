@@ -257,6 +257,7 @@ hr {
         }
         .accordian-content {
             padding: 0.5rem 1rem 0.5rem 0;
+            font-size: 0.8rem;
             p {
                 margin: 0;
             }
@@ -375,7 +376,7 @@ hr {
 
 /* product page price styles */
 .product-price {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     width: 100%;
     font-weight: $font-w-bold;
     word-break: break-all;
@@ -699,13 +700,15 @@ hr {
 
         .product-name {
             // margin-bottom: 0.25rem;
-            font-size:  0.9rem;
+            font-size:  0.8rem;
             width: 100%;
-            color: $font-dark;
+            color: $font-medium;
+            font-weight: $font-w-strong;
+            line-height: 1.25rem;
 
             a {
-                color: $font-dark;
-                border-bottom: 1px solid transparent;
+                color: $gray-600;
+                // border-bottom: 1px solid transparent;
                 display: grid;
                 // transition: border 0.25s ease-out;
                 &:hover {
@@ -753,7 +756,7 @@ hr {
                 box-shadow: none;
                 background-color: white;
                 color: $gray-500;
-                border: 1px solid #f2f2f2;
+                border: 1px solid $gray-300;
                 font-weight: $font-w-strong;
                 letter-spacing: 0.05em;
                 transition-property: color, background-color;
@@ -1256,7 +1259,7 @@ section.slider-block {
     .header-top {
         // margin-bottom: 0.75rem;
         display: flex;
-        height: 5rem;
+        height: 4rem;
         // border-bottom: 1px solid $gray-200;
         // padding-bottom: 0.5rem;
         max-width: 100%;
@@ -1292,7 +1295,7 @@ section.slider-block {
                         border-top-right-radius: 0px;
                         border-bottom-right-radius: 0px;
                         padding-left: 12px;
-                        font-size: 0.8rem;
+                        font-size: 0.9rem;
                         -webkit-appearance: none;
                     }
 
@@ -1833,7 +1836,7 @@ section.slider-block {
                 content: '';
                 background-color: $purple-600;
                 width: 100%;
-                height: 3px;
+                height: 4px;
                 position:absolute;
                 bottom: 0px;
                 left: 0px;
@@ -2564,8 +2567,8 @@ section.product-detail {
 
     div.layouter {
         display: block;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        margin-top: 1.5rem;
+        margin-bottom: 2rem;
 
         .form-container {
             display: flex;
