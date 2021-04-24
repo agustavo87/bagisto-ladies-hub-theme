@@ -14,7 +14,7 @@
             <div>
                 <button
                     v-if="products.length > 0"
-                    class="btn btn-secondary btn-md delete-all {{ core()->getCurrentLocale()->direction == 'rtl' ? 'pull-left' : 'pull-right' }}"
+                    class="btn btn-secondary delete-all {{ core()->getCurrentLocale()->direction == 'rtl' ? 'pull-left' : 'pull-right' }}"
                     @click="removeProductCompare('all')">
                     {{ __('shop::app.customer.account.wishlist.deleteall') }}
                 </button>

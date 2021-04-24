@@ -4,6 +4,11 @@
 @import "mixins";
 @import "animations";
 
+
+html, body {
+    scrollbar-width: thin;
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
@@ -1183,7 +1188,7 @@ section.slider-block {
             right: 2%;
 
             .dark-left-icon {
-                background-color: $background-color;
+                background-color: white;
                 height: 48px;
                 width: 48px;
                 max-height: 100%;
@@ -1191,7 +1196,7 @@ section.slider-block {
             }
 
             .light-right-icon {
-                background-color: $font-dark;
+                background-color: black;
                 height: 48px;
                 width: 48px;
                 max-height: 100%;
@@ -5924,16 +5929,38 @@ section.guest-layout {
 
         &.delete-all {
             border: none;
+            margin-bottom: 2rem;
         }
 
     }
 
     .compared-products-wrapper {
         overflow-x: auto;
+        scrollbar-width: thin;
+
+        &::-webkit-scrollbar
+        {
+            height: 3px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+
     }
 
     table {
         font-size: 1rem;
+        margin-bottom: 2rem;
 
         &.compare-products {
             tr  {
@@ -5955,7 +5982,7 @@ section.guest-layout {
                     .product-name {
                         font-weight: 400;
                         font-size: 1rem;
-                        text-align: center;
+                        text-align: left;
                         margin-top: 0;
 
                     }
@@ -5986,7 +6013,8 @@ section.guest-layout {
                 td:first-child {
                     padding-left: 0;
                     padding-right: 0;
-                    color: $font-dark;
+                    color: $font-light;
+                    font-size: $font-sm;
                     -webkit-hyphens: none;
                     -ms-hyphens: none;
                     hyphens: none;
