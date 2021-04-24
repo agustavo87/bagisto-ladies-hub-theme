@@ -6,7 +6,7 @@
             <hr class="featured-separator">
         </div>
 
-        <div class="product-grid-4">
+        <div class="featured-grid product-grid-4">
 
             @foreach (app('Webkul\Product\Repositories\ProductRepository')->getNewProducts() as $productFlat)
 

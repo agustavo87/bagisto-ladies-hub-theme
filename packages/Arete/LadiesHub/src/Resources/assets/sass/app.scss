@@ -600,6 +600,10 @@ hr {
     }
 
     // product card, requires no changes for responsiveness.
+
+    .featured-grid {
+        margin: 0 1rem;
+    }
     .product-grid-4 {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
@@ -620,8 +624,10 @@ hr {
 
     .product-card {
         // height: 26.5rem;
-        max-width: 270px;
+        // max-width: 270px;
         position: relative;
+        width: 100%;
+        max-width: 340px;
         // padding: 0 1rem 1rem 1rem;
         padding: 0;
         overflow: hidden;
@@ -634,17 +640,17 @@ hr {
         top: 0;
         transition: top 0.3s, box-shadow 0.3s;
         // border: 3px solid #f5f5f5;
-        border: 1px solid $true-gray-200;
-        box-shadow: 0px 0px 30px 0 $true-gray-300, 2px 2px 6px 0 rgba($true-gray-300, .7);
+        border: 1px solid  #eeebf2;
+        box-shadow: 0px 0px 12px 0 #d4d4d499;
         // box-shadow: 0px 0px 9px -1px #0002, 9px 9px 19px -9px #0002;
         background-color: white;
         .product-image {
-            max-height: 16rem;
+            // max-height: 16rem;
             // max-width: 280px;
             // margin-left: -1rem;
             // margin-right: -1rem;
             margin-bottom: 10px;
-            background: $background-color;
+            background: $product-image-background;
             position: relative;
             overflow:hidden;
             
@@ -654,6 +660,7 @@ hr {
                 height: 100%;
                 object-fit:cover;
                 background-color: $product-image-background;
+                margin: 0 auto;
             }
 
             .additional-info {
@@ -1032,8 +1039,11 @@ hr {
             letter-spacing: 0.25rem;
 
             h2 {
+                display: inline-block;
+                border-bottom: 1px solid $font-light;
+                padding-bottom: 0.5rem;
                 color: $font-light;
-                margin: 0 0 0 1rem;
+                margin: 0 0 -1px 1rem;
                 font-size: 1rem;
                 line-height: 1rem;
             }
@@ -1043,7 +1053,7 @@ hr {
                 height: 2px;
                 border:none;
                 background-color: rgba($gray-200, .5);
-                margin: 0.5rem 1rem 0 1rem;
+                margin: 0 1rem 0 1rem;
 
             }
         }
