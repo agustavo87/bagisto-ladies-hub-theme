@@ -43,6 +43,7 @@
         @include('shop::home.slider', ['sliderData' => $sliderData])
         <div>
             @include('shop::home.featured-products')
+            @include('shop::home.newsletter')
             @include('shop::home.new-products')
         </div>
         {{-- {!! DbView::make($channel)->field('home_page_content')->with(['sliderData' => $sliderData])->render() !!} --}}
