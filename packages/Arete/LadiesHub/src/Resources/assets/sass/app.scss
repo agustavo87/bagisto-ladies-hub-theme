@@ -1205,13 +1205,14 @@ section.slider-block {
 }
 
 /* responsive css for slider */
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 900px) {
     section.slider-block {
+        height: calc(100vh -  56px);
         // margin-left: -1rem;
         // margin-right: -1rem;
         div.slider-content {
             ul.slider-images li img {
-                height: 50vh;
+                // height: 50vh;
                 object-position: left;
             }
             div.slider-control {
