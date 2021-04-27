@@ -6211,48 +6211,49 @@ section.newsletter {
     padding-bottom: 1rem;
 
     .newsletter-out {
+        position: relative;
+        width: 100%;
+        min-height: 14rem;
         background-color: $gray-800;
-
         color: white;
 
         p {
             margin: 0;
         }
 
-        width: 100%;
-        height: 14rem;
 
         .full-w-bg {
             position: absolute;
-            height: 14rem;
-            position: absolute;
             width: 100vw;
             left: calc(-50vw + 50%);
+            top:0;
+            bottom: 0;
             background-color: $true-gray-300;
-            // background-image: linear-gradient(180deg, #f1f5f9bf, #f1f5f93b), url('../images/subscribe_banner.png');
-            // background-image: linear-gradient(180deg, #f1f5f9bf, #f1f5f93b), url('../images/subscribe_banner.png');
-            background-position: center;
-            background-size: cover;
         }
 
         .news-main-wrapper {
             position: relative;
             width: 100%;
-            padding: 1rem;
-            height: 14rem;
+            padding: 2rem 2rem;
+            min-height: 14rem;
             display: flex;
+            flex-flow: row wrap;
             justify-content: space-between;
-            background-image: url('../images/subscribe_banner.png');
+            background-image: linear-gradient(45deg, #64748b, transparent), url('../images/subscribe_banner.png');
             background-size: cover;
+            background-position:right;
 
             .left-side {
-                width: 50%;
+                // width: 50%;
+                flex:300px;
                 display: flex;
                 flex-flow: column;
                 justify-content: space-between;
-                padding-left: 1rem;
+                padding-right: 1rem;
+                // padding-left: 1rem;
 
                 .top {
+                    padding-bottom: 1rem;
                     .pre-tagline {
                         font-weight: $font-w-bold;
                         text-transform: uppercase;
@@ -6267,7 +6268,7 @@ section.newsletter {
 
                 .bottom {
                     font-size: 0.8rem;
-                    width: 20rem;
+                    max-width: 20rem;
                     border-left: 3px solid #fffd;
                     padding-left: 1rem;
                     line-height: 1.5em;
@@ -6278,8 +6279,10 @@ section.newsletter {
             .right-side {
                 display: flex;
                 flex-flow: column-reverse;
-                width: 40%;
-                padding-right: 1rem;
+                flex: 300px;
+                // width: 40%;
+                // padding-left: 1rem;
+                padding-top: 1rem;
 
                 form {
                     display: flex;
@@ -6292,34 +6295,35 @@ section.newsletter {
 
                     div {
                         display: flex;
-                        flex-flow: row;
+                        flex-flow: row wrap;
+                        gap: 0.25rem;
 
                         input {
-                            font-size: 16px;
-                            line-height: 16px;
-                            padding: 12px 16px;
-                            height: 40px;
+                            font-size: 1rem;
+                            line-height: 1rem;
+                            padding: 0.8rem 1rem;
+                            height: 2.5rem;
                             border: 1px solid white;
-                            flex-grow: 1;
+                            flex: 20ch 2;
                             background-color: #fffd;
 
                             &::placeholder {
-                                color: rgb($gray-600, .3);
+                                color: rgb($gray-800, .4);
                             }
                         }
 
 
                         button {
-                            font-size: 16px;
-                            line-height: 16px;
-                            padding: 12px 24px;
-                            height: 40px;
+                            flex: 8ch 1;
+                            font-size: 1rem;
+                            line-height: 1rem;
+                            padding: 0.8rem 1.5rem;
+                            height: 2.5rem;
                             border: 1px solid white;
                             background-color: #fff5;
                             color: white;
                             text-transform: uppercase;
                             font-weight: 600;
-                            margin-left: 3px;
 
                             &:hover {
                                 background-color: #fff8;
@@ -6330,5 +6334,11 @@ section.newsletter {
                 }
             }
         }
+    }
+}
+
+@media screen and (max-width: 400px) {
+    section.newsletter .newsletter-out .news-main-wrapper {
+        padding: 1rem;
     }
 }
