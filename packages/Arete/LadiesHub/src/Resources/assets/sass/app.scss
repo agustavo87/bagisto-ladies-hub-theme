@@ -2208,7 +2208,8 @@ section.slider-block {
 .footer {
     background-color: $gray-200;
     border-top: 1px solid #D2D6DC;
-    background-image: url('../images/footer.png');
+    // background-image: url('../images/footer.png');
+    background-image: linear-gradient(to bottom, white, #cbd5e1);
     // padding-left: 10%;
     // padding-right: 10%;
     width: 100%;
