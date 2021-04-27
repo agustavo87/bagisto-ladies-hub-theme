@@ -94,4 +94,11 @@
             </div>
         </div>
     </div>
+    <div class="bottom-division">
+        <div class="bottom-content">
+            <span class="desing-brand"><strong>GRA</strong> Web Crafts</span>
+            <span class="web-brand"><x-logo-lg class="foot-logo" /></span>
+            <span class="privacy">Privacy & Cookies</span>
+        </div>
+    </div>
 </div>
