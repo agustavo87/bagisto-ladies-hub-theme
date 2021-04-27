@@ -2300,7 +2300,10 @@ section.slider-block {
 
 @media all and (max-width: 720px) {
     .footer {
-        padding-left: 1rem;
+        // padding-left: 1rem;
+        .footer-content {
+            padding: 2.5rem 1rem 3rem 1rem;
+        }
 
         .footer-list-container {
             padding-left: 0px !important;
