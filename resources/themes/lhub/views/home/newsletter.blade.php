@@ -14,9 +14,13 @@
             <div class="right-side">
                 <form action="" class="mail">
                     <label for="mail">E-mail:</label>
-                    <div>
-                        <input type="text" name="email" id="email" placeholder="name@example.com">
-                        <button type="submit">Subscribe</button>
+                    <div class="mail-wrapper">
+                        <div class="input">
+                            <input type="text" name="email" id="email" placeholder="name@example.com">
+                        </div>
+                        <div class="button">
+                            <button type="submit">Subscribe</button>
+                        </div>
                     </div>
                 </form>
             </div>
