@@ -1120,22 +1120,24 @@ section.slider-block {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    // margin-bottom: 2rem;
-    // margin-bottom: 5%;
+    height: 500px;
 
     div.slider-content {
         position: relative;
         margin-left: auto;
         margin-right: auto;
+        height: 100%;
 
 
         ul.slider-images {
+            height: 100%;
 
             .show-content {
                 display: none;
             }
 
             li{
+                height: 100%;
                 position: absolute;
                 visibility: hidden;
                 line-height:0;
@@ -1159,11 +1161,6 @@ section.slider-block {
                     height: 100%;
                     width: 100%;
                     top: 0px;
-
-                    // * {
-                    //     color: blue;
-                    //     font-size: 112px;
-                    // }
                 }
             }
 
@@ -1173,7 +1170,7 @@ section.slider-block {
             }
 
             li img {
-                height: 500px;
+                height: 100%;
                 width: 100%;
                 object-fit: cover;
                 object-position: right;
