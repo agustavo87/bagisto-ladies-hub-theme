@@ -4,7 +4,7 @@
             <div class="menu-block-title">
                 {{ trans($menuItem['name']) }}
 
-                <i class="icon icon-arrow-down right" id="down-icon"></i>
+                <x-arrow-down-icon class="icon icon-arrow-down right" id="down-icon" />
             </div>
 
             <div class="menu-block-content">
@@ -46,6 +46,7 @@
 <script>
     $(document).ready(function() {
         $(".icon.icon-arrow-down.right").on('click', function(e){
+            // console.log('click en flecha');
             var currentElement = $(e.currentTarget);
             if (currentElement.hasClass('icon-arrow-down')) {
                 $(this).parents('.menu-block').find('.menubar').show();

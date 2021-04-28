@@ -13,7 +13,11 @@
         <div class="account-layout">
 
             <div class="account-head mb-15">
-                <span class="account-heading">{{ __('shop::app.customer.account.wishlist.title') }}</span>
+                <span class="account-heading">
+                    <h2>
+                        {{ __('shop::app.customer.account.wishlist.title') }}
+                    </h2>
+                </span>
 
                 @if (count($items))
                     <div class="account-action">

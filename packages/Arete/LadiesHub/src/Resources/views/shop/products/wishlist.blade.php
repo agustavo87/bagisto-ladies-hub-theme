@@ -12,9 +12,10 @@
             title="{{ __('shop::app.customer.account.wishlist.add-wishlist-text') }}"
         @endif
         id="wishlist-changer"
-        style="margin-right: 15px;"
         href="{{ route('customer.wishlist.add', $product->product_id) }}">
-        <span class="icon wishlist-icon"></span>
+        <span class="icon">
+            <x-wishlist-icon class="wishlist-icon" />
+        </span>
     </a>
 
     {!! view_render_event('bagisto.shop.products.wishlist.after') !!}

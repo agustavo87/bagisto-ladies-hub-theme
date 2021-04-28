@@ -297,11 +297,14 @@
                     },
 
                     changeProductImages: function () {
-                        galleryImages.splice(0, galleryImages.length)
 
-                        this.galleryImages.forEach(function(image) {
-                            galleryImages.push(image)
-                        });
+                        galleryImages.splice(0, galleryImages.length)
+                        
+                        if( this.config.variant_images[this.simpleProduct].length < 1) {
+                            this.galleryImages.forEach(function(image) {
+                                galleryImages.push(image)
+                            });
+                        }
 
                         if (this.simpleProduct) {
                             this.config.variant_images[this.simpleProduct].forEach(function(image) {

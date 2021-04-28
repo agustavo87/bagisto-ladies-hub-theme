@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'default' => 'vanity',
+    'default' => 'default',
 
     'themes' => [
         'default' => [
@@ -10,12 +10,12 @@ return [
             'name' => 'Default'
         ],
 
-        'lhub' => [
-            'views_path' => 'resources/themes/lhub/views',
-            'assets_path' => 'public/themes/lhub/assets',
-            'name' => 'Ladies Hub',
-            'parent' => 'default'
-        ],
+        // 'lhub' => [
+        //     'views_path' => 'resources/themes/lhub/views',
+        //     'assets_path' => 'public/themes/lhub/assets',
+        //     'name' => 'Ladies Hub',
+        //     'parent' => 'default'
+        // ],
 
         'velocity' => [
             'views_path' => 'resources/themes/velocity/views',

@@ -9,7 +9,7 @@
                         <div class="control-error">@{{ error_message }}</div>
                     </div>
 
-                    <button class="btn btn-lg btn-black" :disabled="disable_button">{{ __('shop::app.checkout.onepage.apply-coupon') }}</button>
+                    <button class="btn btn-lg btn-secondary" :disabled="disable_button">{{ __('shop::app.checkout.onepage.apply-coupon') }}</button>
                 </form>
             </div>
 

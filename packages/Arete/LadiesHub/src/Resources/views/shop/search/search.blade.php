@@ -14,31 +14,33 @@
     @endif
 
     @if ($results)
-        <div class="main mb-30" style="min-height: 27vh;">
-            @if ($results->isEmpty())
-                <div class="search-result-status">
-                    <h2>{{ __('shop::app.products.whoops') }}</h2>
-                    <span>{{ __('shop::app.search.no-results') }}</span>
-                </div>
-            @else
-                <div class="search-result-status mb-20">
-                    <span>
-                        <b>{{ $results->total() }} </b>
-
-                        {{ ($results->total() == 1) ? __('shop::app.search.found-result') : __('shop::app.search.found-results') }}
-                    </span>
-                </div>
-
-                <div class="product-grid-4">
-                    @foreach ($results as $productFlat)
-
-                        @include('shop::products.list.card', ['product' => $productFlat->product])
-
-                    @endforeach
-                </div>
-
-                @include('ui::datagrid.pagination')
-            @endif
+        <div class="main" style="min-height: 27vh;">
+            <div class="search-results-container">
+                @if ($results->isEmpty())
+                    <div class="search-result-status">
+                        <h2>{{ __('shop::app.products.whoops') }}</h2>
+                        <span>{{ __('shop::app.search.no-results') }}</span>
+                    </div>
+                @else
+                    <div class="search-result-status success">
+                        <span>
+                            <b>{{ $results->total() }} </b>
+    
+                            {{ ($results->total() == 1) ? __('shop::app.search.found-result') : __('shop::app.search.found-results') }}
+                        </span>
+                    </div>
+    
+                    <div class="product-grid-4">
+                        @foreach ($results as $productFlat)
+    
+                            @include('shop::products.list.card', ['product' => $productFlat->product])
+    
+                        @endforeach
+                    </div>
+    
+                    @include('ui::datagrid.pagination')
+                @endif
+            </div>
         </div>
     @endif
 @endsection

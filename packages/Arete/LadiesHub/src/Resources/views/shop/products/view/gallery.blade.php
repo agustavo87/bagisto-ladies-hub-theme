@@ -74,7 +74,61 @@
     </script>
 
     <script>
+        /** @param {HTMLElement} element */
+        function $if(element) {
+            return {
+                element: element,
+                /**
+                 * @param {string} event
+                 * @param {function} callback
+                 */
+                emit: function (event, callback) {
+                    this.element.addEventListener(event, callback);
+                }
+            }
+        }
+        
+        /** @param {Object[]} imgs */
+        function listImages(imgs) {
+            let list = [];
+            imgs.forEach((imgPack) => {
+                list.push(imgPack.large_image_url)
+                list.push(imgPack.medium_image_url)
+                list.push(imgPack.original_image_url)
+                list.push(imgPack.small_image_url)
+            })
+            return list;
+        }
+
+        /** @param {string[]} imgs */
+        function preloadImg(imgs) {
+            if (!preloadImg.list) {
+                preloadImg.list = [];
+            }
+
+            imgs.forEach((src) => {
+                let img = new Image();
+                $if(img).emit('load', function () {
+                    // console.log('cargado', img);
+                    let index = preloadImg.list.indexOf(img);
+                    if (index !== -1) {
+                        preloadImg.list.splice(index, 1);
+                    }
+                });
+                preloadImg.list.push(img);
+                img.src = src;
+            })
+            
+        }
+
+
         var galleryImages = @json($images);
+
+        let imgList = listImages(galleryImages);
+        preloadImg(imgList);
+
+
+        // console.log('gallery images', galleryImages);
 
         Vue.component('product-gallery', {
 

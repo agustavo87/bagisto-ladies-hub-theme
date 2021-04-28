@@ -2,12 +2,11 @@
     <section class="featured-products">
 
         <div class="featured-heading">
-            {{ __('shop::app.home.new-products') }}<br/>
-
-            <span class="featured-seperator" style="color: #d7dfe2;">_____</span>
+            <h2> {{ __('shop::app.home.new-products') }} </h2> 
+            <hr class="featured-separator">
         </div>
 
-        <div class="product-grid-4">
+        <div class="featured-grid product-grid-4">
 
             @foreach (app('Webkul\Product\Repositories\ProductRepository')->getNewProducts() as $productFlat)
 

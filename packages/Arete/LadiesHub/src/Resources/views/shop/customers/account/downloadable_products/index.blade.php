@@ -14,7 +14,9 @@
             <div class="account-head mb-10">
                 <span class="back-icon"><a href="{{ route('customer.profile.index') }}"><i class="icon icon-menu-back"></i></a></span>
                 <span class="account-heading">
-                    {{ __('shop::app.customer.account.downloadable_products.title') }}
+                    <h2>
+                        {{ __('shop::app.customer.account.downloadable_products.title') }}
+                    </h2>
                 </span>
 
                 <div class="horizontal-rule"></div>

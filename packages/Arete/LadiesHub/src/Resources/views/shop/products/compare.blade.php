@@ -4,11 +4,11 @@
 
     <script type="text/x-template" id="compare-component-template">
         <a
-            class="unset text-right"
+            class="unset text-right compare-component"
             title="{{  __('shop::app.customer.compare.add-tooltip') }}"
             @click="addProductToCompare"
             style="cursor: pointer">
-            <img src="{{ asset('themes/default/assets/images/compare_arrows.png') }}" alt="" />
+            <x-compare-icon class="icon compare-icon" />
         </a>
     </script>
 
@@ -37,7 +37,7 @@
                                 'type': `alert-${response.data.status}`,
                                 'message': response.data.message
                             }];
-
+                            this.updateCompareCount();
                             this.$root.addFlashMessages()
                         }).catch(error => {
                             window.flashMessages = [{
@@ -63,6 +63,7 @@
                                 }];
 
                                 this.$root.addFlashMessages()
+                                this.updateCompareCount();
                             } else {
                                 window.flashMessages = [{
                                     'type': `alert-success`,
@@ -70,6 +71,7 @@
                                 }];
 
                                 this.$root.addFlashMessages()
+                                this.updateCompareCount();
                             }
                         } else {
                             this.setStorageValue('compared_product', updatedItems);
@@ -82,8 +84,6 @@
                                 this.$root.addFlashMessages()
                         }
                     }
-
-                    this.updateCompareCount();
                 },
 
                 'getStorageValue': function (key) {
@@ -103,10 +103,18 @@
                 },
 
                 'updateCompareCount': function () {
+                    console.log('actualizando compare-count');
                     if (this.customer == "true" || this.customer == true) {
                         this.$http.get(`${this.baseUrl}/items-count`)
                         .then(response => {
-                            $('#compare-items-count').html(response.data.compareProductsCount);
+                            let count = response.data.compareProductsCount;
+                            if (count > 0) {
+                                console.log('mostrando');
+                                $('.compare-items-count').show();
+                            } else {
+                                $('.compare-items-count').hide();
+                            }
+                            $('#compare-items-count').html(count);
                         })
                         .catch(exception => {
                             window.flashMessages = [{
@@ -119,6 +127,14 @@
                     } else {
                         let comparedItems = JSON.parse(localStorage.getItem('compared_product'));
                         comparedItemsCount = comparedItems ? comparedItems.length : 0;
+
+                        if(comparedItemsCount > 0) {
+                            $('.compare-items-count').show();
+                            console.log('compare: invitado, mostrando')
+                        } else {
+                            console.log('compare: invitado, escondiendo')
+                            $('.compare-items-count').hide();
+                        }
 
                         $('#compare-items-count').html(comparedItemsCount);
                     }

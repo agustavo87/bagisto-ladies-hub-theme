@@ -24,8 +24,8 @@ class LadiesHubServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // $this->registerConfig();
-        $this->mergeConfigFrom(dirname(__DIR__) . '/Config/themes.php', 'themes');
+        
+        $this->registerConfig();
     }
 
     /**
@@ -36,7 +36,7 @@ class LadiesHubServiceProvider extends ServiceProvider
     private function loadPublishableAssets()
     {
         $this->publishes([
-            __DIR__ . '/../../publishable/assets' => public_path('themes/lhub/views'),
+            __DIR__ . '/../../publishable/assets' => public_path('themes/lhub/assets'),
         ], 'public');
 
         $this->publishes([
@@ -55,8 +55,7 @@ class LadiesHubServiceProvider extends ServiceProvider
      */
     protected function registerConfig()
     {
-        $this->mergeConfigFrom(dirname(__DIR__) . '/Config/themes.php', 'themes');
+        
+        $this->mergeConfigFrom(dirname(__DIR__) . '/Config/themes.php', 'themes.themes');
     }
-
-
 }

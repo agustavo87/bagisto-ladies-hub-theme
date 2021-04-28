@@ -59,8 +59,8 @@
                     <span class="remove-filter-link" v-if="appliedFilters.length" @click.stop="clearFilters()">
                         {{ __('shop::app.products.remove-filter-link-title') }}
                     </span>
-
-                    <i class="icon" :class="[active ? 'arrow-up-icon' : 'arrow-down-icon']"></i>
+                    <x-arrow-down-icon class="arrow-down-icon" @:class="[active ? 'arrow-up-icon' : 'arrow-down-icon']" />
+                    {{-- <i class="icon" :class="[active ? 'arrow-up-icon' : 'arrow-down-icon']"></i> --}}
                 </div>
             </div>
 

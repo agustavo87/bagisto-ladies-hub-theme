@@ -37,16 +37,22 @@
 @endsection
 
 @section('content-wrapper')
-    {!! view_render_event('bagisto.shop.home.content.before') !!}
-
+    {{-- {!! view_render_event('bagisto.shop.home.content.before') !!} --}}
+    
     @if (! is_null($channel->home_page_content))
-        {!! DbView::make($channel)->field('home_page_content')->with(['sliderData' => $sliderData])->render() !!}
+        @include('shop::home.slider', ['sliderData' => $sliderData])
+        <div>
+            @include('shop::home.featured-products')
+            @include('shop::home.newsletter')
+            @include('shop::home.new-products')
+        </div>
+        {{-- {!! DbView::make($channel)->field('home_page_content')->with(['sliderData' => $sliderData])->render() !!} --}}
     @else
         @include('shop::home.slider', ['sliderData' => $sliderData])
         @include('shop::home.featured-products')
         @include('shop::home.new-products')
     @endif
 
-    {{ view_render_event('bagisto.shop.home.content.after') }}
+    {{-- {{ view_render_event('bagisto.shop.home.content.after') }} --}}
 
 @endsection

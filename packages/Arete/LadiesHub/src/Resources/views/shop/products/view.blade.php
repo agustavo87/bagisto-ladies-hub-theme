@@ -56,7 +56,7 @@
                     <div class="details">
 
                         <div class="product-heading">
-                            <span>{{ $product->name }}</span>
+                            <h2>{{ $product->name }}</h2>
                         </div>
 
                         @include ('shop::products.review', ['product' => $product])
@@ -260,40 +260,40 @@
             addTOButton.style.display="flex";
         });
 
-        window.onload = function() {
-            var thumbList = document.getElementsByClassName('thumb-list')[0];
-            var thumbFrame = document.getElementsByClassName('thumb-frame');
-            var productHeroImage = document.getElementsByClassName('product-hero-image')[0];
+        // window.onload = function() {
+        //     var thumbList = document.getElementsByClassName('thumb-list')[0];
+        //     var thumbFrame = document.getElementsByClassName('thumb-frame');
+        //     var productHeroImage = document.getElementsByClassName('product-hero-image')[0];
 
-            if (thumbList && productHeroImage) {
+        //     if (thumbList && productHeroImage) {
 
-                for(let i=0; i < thumbFrame.length ; i++) {
-                    thumbFrame[i].style.height = (productHeroImage.offsetHeight/4) + "px";
-                    thumbFrame[i].style.width = (productHeroImage.offsetHeight/4)+ "px";
-                }
+        //         for(let i=0; i < thumbFrame.length ; i++) {
+        //             thumbFrame[i].style.height = (productHeroImage.offsetHeight/4) + "px";
+        //             thumbFrame[i].style.width = (productHeroImage.offsetHeight/4)+ "px";
+        //         }
 
-                if (screen.width > 720) {
-                    thumbList.style.width = (productHeroImage.offsetHeight/4) + "px";
-                    thumbList.style.minWidth = (productHeroImage.offsetHeight/4) + "px";
-                    thumbList.style.height = productHeroImage.offsetHeight + "px";
-                }
-            }
+        //         if (screen.width > 720) {
+        //             thumbList.style.width = (productHeroImage.offsetHeight/4) + "px";
+        //             thumbList.style.minWidth = (productHeroImage.offsetHeight/4) + "px";
+        //             thumbList.style.height = productHeroImage.offsetHeight + "px";
+        //         }
+        //     }
 
-            window.onresize = function() {
-                if (thumbList && productHeroImage) {
+        //     window.onresize = function() {
+        //         if (thumbList && productHeroImage) {
 
-                    for(let i=0; i < thumbFrame.length; i++) {
-                        thumbFrame[i].style.height = (productHeroImage.offsetHeight/4) + "px";
-                        thumbFrame[i].style.width = (productHeroImage.offsetHeight/4)+ "px";
-                    }
+        //             for(let i=0; i < thumbFrame.length; i++) {
+        //                 thumbFrame[i].style.height = (productHeroImage.offsetHeight/4) + "px";
+        //                 thumbFrame[i].style.width = (productHeroImage.offsetHeight/4)+ "px";
+        //             }
 
-                    if (screen.width > 720) {
-                        thumbList.style.width = (productHeroImage.offsetHeight/4) + "px";
-                        thumbList.style.minWidth = (productHeroImage.offsetHeight/4) + "px";
-                        thumbList.style.height = productHeroImage.offsetHeight + "px";
-                    }
-                }
-            }
-        };
+        //             if (screen.width > 720) {
+        //                 thumbList.style.width = (productHeroImage.offsetHeight/4) + "px";
+        //                 thumbList.style.minWidth = (productHeroImage.offsetHeight/4) + "px";
+        //                 thumbList.style.height = productHeroImage.offsetHeight + "px";
+        //             }
+        //         }
+        //     }
+        // };
     </script>
 @endpush

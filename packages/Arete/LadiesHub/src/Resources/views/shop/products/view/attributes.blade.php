@@ -3,7 +3,7 @@
 {!! view_render_event('bagisto.shop.products.view.attributes.before', ['product' => $product]) !!}
 
 @if ($customAttributeValues = $productViewHelper->getAdditionalData($product))
-    <accordian :title="'{{ __('shop::app.products.specification') }}'" :active="false">
+    <accordian :title="'{{ __('shop::app.products.specification') }}'" :active="true">
         <div slot="header">
             {{ __('shop::app.products.specification') }}
             <i class="icon expand-icon right"></i>

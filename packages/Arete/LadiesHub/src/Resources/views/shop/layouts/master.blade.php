@@ -10,8 +10,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="content-language" content="{{ app()->getLocale() }}">
-    <link rel="stylesheet" href="{{ asset('vendor/webkul/ui/assets/css/ui.css') }}">
 
+    {{-- Google Fonts --}}
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ asset('vendor/webkul/ui/assets/css/ui.css') }}">
     <link rel="stylesheet" href="{{ bagisto_asset('css/lhub.css') }}">
 
     @if ($favicon = core()->getCurrentChannel()->favicon_url)
@@ -40,19 +44,26 @@
 
 
 <body @if (core()->getCurrentLocale() && core()->getCurrentLocale()->direction == 'rtl') class="rtl" @endif style="scroll-behavior: smooth;">
-    <x-alert>Hola</x-alert>
     {!! view_render_event('bagisto.shop.layout.body.before') !!}
 
     <div id="app">
         <flash-wrapper ref='flashes'></flash-wrapper>
+        {{-- <div class="alert-wrapper">
+            <div class="alert alert-success">
+                <span class="icon white-cross-sm-icon"></span>
+                <p> Alerta de prueba. Este es un mensaje relativamente largo para ver como lo manejaría </p>
+            </div>
+        </div> --}}
+
+        {!! view_render_event('bagisto.shop.layout.header.before') !!}
+
+        @include('shop::layouts.header.index')
+
+        {!! view_render_event('bagisto.shop.layout.header.after') !!}
 
         <div class="main-container-wrapper">
 
-            {!! view_render_event('bagisto.shop.layout.header.before') !!}
-
-            @include('shop::layouts.header.index')
-
-            {!! view_render_event('bagisto.shop.layout.header.after') !!}
+            
 
             @yield('slider')
 
@@ -111,7 +122,7 @@
         @endif
     </script>
 
-    <script type="text/javascript" src="{{ bagisto_asset('js/shop.js') }}"></script>
+    <script type="text/javascript" src="{{ bagisto_asset('js/lhub-app.js') }}"></script>
     <script type="text/javascript" src="{{ asset('vendor/webkul/ui/assets/js/ui.js') }}"></script>
 
     @stack('scripts')

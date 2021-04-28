@@ -47,12 +47,17 @@
                     if (! is_null($term)) {
                         $serachQuery = 'term='.request()->input('term');
                     }
+
+                    if (count(core()->getCurrentChannel()->locales) == 1)  {
+                        $multiLocale = false;
+                    }
                 ?>
 
+                @if($multiLocale)
                 <label class="list-heading" for="locale-switcher">{{ __('shop::app.footer.locale') }}</label>
                 <div class="form-container">
                     <div class="control-group">
-                        <select class="control locale-switcher" id="locale-switcher" onchange="window.location.href = this.value" @if (count(core()->getCurrentChannel()->locales) == 1) disabled="disabled" @endif>
+                        <select class="control locale-switcher" id="locale-switcher" onchange="window.location.href = this.value" {{ $multiLocale ? '' : 'disabled="disabled"'}} >
 
                             @foreach (core()->getCurrentChannel()->locales as $locale)
                                 @if (isset($serachQuery))
@@ -65,6 +70,7 @@
                         </select>
                     </div>
                 </div>
+                @endif
 
                 <div class="currency">
                     <label class="list-heading" for="currency-switcher">{{ __('shop::app.footer.currency') }}</label>
@@ -86,6 +92,13 @@
                 </div>
 
             </div>
+        </div>
+    </div>
+    <div class="bottom-division">
+        <div class="bottom-content">
+            <span class="desing-brand"><strong>GRA</strong> Web Crafts</span>
+            <span class="web-brand"><x-logo-lg class="foot-logo" /></span>
+            <span class="privacy">Privacy & Cookies</span>
         </div>
     </div>
 </div>

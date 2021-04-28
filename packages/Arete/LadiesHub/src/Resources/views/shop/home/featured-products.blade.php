@@ -2,9 +2,8 @@
     <section class="featured-products">
 
         <div class="featured-heading">
-            {{ __('shop::app.home.featured-products') }}<br/>
-
-            <span class="featured-seperator" style="color: #d7dfe2;">_____</span>
+            <h2> {{ __('shop::app.home.featured-products') }} </h2>
+            <hr class="featured-separator">
         </div>
 
         <div class="featured-grid product-grid-4">
@@ -22,6 +21,5 @@
             @endforeach
 
         </div>
-
     </section>
 @endif
