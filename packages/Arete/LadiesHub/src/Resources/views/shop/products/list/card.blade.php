@@ -26,9 +26,9 @@ if (strlen($shortDescription) > $max_length ) {
         <div class="product-image">
             <a href="{{ route('shop.productOrCategory.index', $product->url_key) }}" title="{{ $product->name }}">
                 <img src="{{ $productBaseImage['medium_image_url'] }}" onerror="this.src='{{ asset('vendor/webkul/ui/assets/images/product/meduim-product-placeholder.png') }}'" alt="{{ $product->name }}" />
-            <div class="additional-info">
+            {{-- <div class="additional-info">
                 <p> {{ $shortDescription }} </p>
-            </div>
+            </div> --}}
             </a>
         </div>
         <div class="product-information">

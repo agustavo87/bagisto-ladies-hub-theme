@@ -199,7 +199,13 @@
                     }
 
                     if ($(window).width() > 580 && image.original_image_url) {
-                        $('img#pro-img').data('zoom-image', image.original_image_url).ezPlus();
+                        $('img#pro-img').data('zoom-image', image.original_image_url).ezPlus({
+    zoomType: 'inner',
+    zoomWindowFadeIn: 500,
+    zoomWindowFadeOut: 500,
+    borderSize: 0,
+    responsive: true
+});
                     }
                 },
 
@@ -245,7 +251,13 @@
     <script>
         $(document).ready(function() {
             if ($(window).width() > 580) {
-                $('img#pro-img').data('zoom-image', $('img#pro-img').data('image')).ezPlus();
+                $('img#pro-img').data('zoom-image', $('img#pro-img').data('image')).ezPlus({
+    zoomType: 'inner',
+    zoomWindowFadeIn: 500,
+    zoomWindowFadeOut: 500,
+    borderSize: 0,
+    responsive: true
+});
             }
 
             var wishlist = "{{ $wishListHelper->getWishlistProduct($product) ? 'true' : 'false' }}";
