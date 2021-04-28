@@ -2713,10 +2713,11 @@ section.product-detail {
                         max-height: 480px;
 
                         .thumb-frame {
-                            border: 2px solid transparent;
                             background: $background-color;
-                            width: 120px;
-                            max-height: 120px;
+                            border: 1px solid transparent;
+                            width: 7rem;
+                            max-height: 7rem;
+                            margin: 2px;
 
                             &.active {
                                 border-color: $brand-color;
