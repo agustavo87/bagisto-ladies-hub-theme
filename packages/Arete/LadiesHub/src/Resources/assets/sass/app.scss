@@ -583,10 +583,12 @@ hr {
     padding-right: 1rem;
     margin-left: auto;
     margin-right: auto;
+    background-color: white;
 
     .content-container {
         display: block;
         min-height: 70vh;
+        padding: 2rem 0 6rem 0;
         // padding-bottom: 5rem;
         // background-color: $gray-50;
         section {
@@ -2670,7 +2672,7 @@ section.slider-block {
 /* product pages css starts here */
 section.product-detail {
     color: $font-dark;
-    margin: 3rem 0 4rem 0;
+    // margin: 3rem 0 4rem 0;
 
     div.category-breadcrumbs {
         display: inline;
@@ -2678,8 +2680,8 @@ section.product-detail {
 
     div.layouter {
         display: block;
-        margin-top: 1.5rem;
-        margin-bottom: 2rem;
+        // margin-top: 1.5rem;
+        // margin-bottom: 2rem;
 
         .form-container {
             display: flex;
@@ -4204,7 +4206,7 @@ section.cart {
 
 // checkout responsive
 .attached-products-wrapper {
-    margin-bottom: 80px;
+    // margin-bottom: 80px;
 
     .title {
         margin-bottom: 40px;
@@ -6220,6 +6222,7 @@ td {
         }
 
         .content-container {
+            padding: 1rem 0 6rem 0;
 
 
             .product-detail {
