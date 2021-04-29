@@ -781,10 +781,8 @@ hr {
                 transition-property: color, background-color;
                 transition: 0.25s ease-in-out;
 
-
-
                 &:hover {
-                    background-color: $purple-900;
+                    background-color: $purple-600;
                     color: white;
                     border: 1px solid transparent;
                 }
