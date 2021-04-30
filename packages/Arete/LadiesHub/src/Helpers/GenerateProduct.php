@@ -80,12 +80,10 @@ class GenerateProduct
         if (! AttributeOption::where(['attribute_id' => $brand->id])->exists()) {
 
             AttributeOption::create([
-                'admin_name'   => 'Webkul Demo Brand (c) 2020',
+                'admin_name'   => 'Ladies Hub Joy Gifts',
                 'attribute_id' => $brand->id,
             ]);
         }
-
-
     }
 
     /**
@@ -111,9 +109,7 @@ class GenerateProduct
 
         unset($data);
 
-        
-        $date = date('Y-m-d');
-        $date = \Carbon\Carbon::parse($date);
+        $date = today();
         $specialFrom = $date->toDateString();
         $specialTo = $date->addDays(7)->toDateString();
 
