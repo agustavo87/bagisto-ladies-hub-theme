@@ -113,47 +113,10 @@ class GenerateProduct
         $specialFrom = $date->toDateString();
         $specialTo = $date->addDays(7)->toDateString();
 
-        foreach ($attributes as $attribute) {
-            if ($attribute->type == 'text') {
-                if ($attribute->code == 'width'
-                    || $attribute->code == 'height'
-                    || $attribute->code == 'depth'
-                    || $attribute->code == 'weight'
-                ) {
-                    $data[$attribute->code] = $faker->randomNumber(3);
-                } elseif ($attribute->code == 'url_key') {
-                    $data[$attribute->code] = $sku;
-                } elseif ($attribute->code =='product_number') {
-                    $data[$attribute->code] = $faker->randomNumber(5);
-                } elseif ($attribute->code =='name') {
-                    $data[$attribute->code] = ucfirst($faker->words(rand(1,4),true));
-                } elseif ($attribute->code != 'sku') {
-                    $data[$attribute->code] = $faker->name;
-                } else {
-                    $data[$attribute->code] = $sku;
-                }
-            } elseif ($attribute->type == 'textarea') {
-                $data[$attribute->code] = $faker->text;
+        $selectFiller = function ($attribute) use (&$data) {
+            if ($attribute->code === 'tax_category_id' ) return;
 
-                if ($attribute->code == 'description' || $attribute->code == 'short_description') {
-                    $data[$attribute->code] = '<p>' . $data[$attribute->code] . '</p>';
-                }
-            } elseif ($attribute->type == 'boolean') {
-                $data[$attribute->code] = $faker->boolean;
-            } elseif ($attribute->type == 'price') {
-                $data[$attribute->code] = rand(5,200);
-            } elseif ($attribute->type == 'datetime') {
-                $data[$attribute->code] = $date->toDateTimeString();
-            } elseif ($attribute->type == 'date') {
-                if ($attribute->code == 'special_price_from') {
-                    $data[$attribute->code] = $specialFrom;
-                } elseif ($attribute->code == 'special_price_to') {
-                    $data[$attribute->code] = $specialTo;
-                } else {
-                    $data[$attribute->code] = $date->toDateString();
-                }
-            } elseif ($attribute->code != 'tax_category_id' && ($attribute->type == 'select' || $attribute->type == 'multiselect')) {
-                $options = $attribute->options;
+            $options = $attribute->options;
 
                 if ($attribute->type == 'select') {
                     if ($options->count()) {
@@ -178,7 +141,58 @@ class GenerateProduct
                 } else {
                     $data[$attribute->code] = "";
                 }
-            } elseif ($attribute->code == 'checkbox') {
+        };
+
+        
+
+        $typeLookUp = [
+            'text' => function ($attribute) use(&$data, $faker, $sku)  {
+                if ($attribute->code == 'width'
+                    || $attribute->code == 'height'
+                    || $attribute->code == 'depth'
+                    || $attribute->code == 'weight'
+                ) {
+                    $data[$attribute->code] = $faker->randomNumber(3);
+                } elseif ($attribute->code == 'url_key') {
+                    $data[$attribute->code] = $sku;
+                } elseif ($attribute->code =='product_number') {
+                    $data[$attribute->code] = $faker->randomNumber(5);
+                } elseif ($attribute->code =='name') {
+                    $data[$attribute->code] = ucfirst($faker->words(rand(1,4),true));
+                } elseif ($attribute->code != 'sku') {
+                    $data[$attribute->code] = $faker->name;
+                } else {
+                    $data[$attribute->code] = $sku;
+                }
+            },
+            'textarea' => function ($attribute) use(&$data, $faker) {
+                $data[$attribute->code] = $faker->text;
+
+                if ($attribute->code == 'description' || $attribute->code == 'short_description') {
+                    $data[$attribute->code] = '<p>' . $data[$attribute->code] . '</p>';
+                }
+            },
+            'boolean' => function ($attribute) use(&$data, $faker) {
+                $data[$attribute->code] = $faker->boolean;
+            },
+            'price' => function ($attribute) use(&$data, $faker) {
+                $data[$attribute->code] = rand(5,200);
+            },
+            'datetime' => function ($attribute) use(&$data, $date) {
+                $data[$attribute->code] = $date->toDateTimeString();
+            },
+            'date' => function ($attribute) use(&$data, $date, $specialFrom, $specialTo) {
+                if ($attribute->code == 'special_price_from') {
+                    $data[$attribute->code] = $specialFrom;
+                } elseif ($attribute->code == 'special_price_to') {
+                    $data[$attribute->code] = $specialTo;
+                } else {
+                    $data[$attribute->code] = $date->toDateString();
+                }
+            },
+            'select' => $selectFiller,
+            'multiselect' => $selectFiller,
+            'checkbox' => function ($attribute) use (&$data) {
                 $options = $attribute->options;
 
                 if ($options->count()) {
@@ -193,6 +207,10 @@ class GenerateProduct
                     $data[$attribute->code] = "";
                 }
             }
+        ];
+
+        foreach ($attributes as $attribute) {
+            $typeLookUp[$attribute->type]($attribute);
         }
 
         // special price has to be less than price and not less than cost
