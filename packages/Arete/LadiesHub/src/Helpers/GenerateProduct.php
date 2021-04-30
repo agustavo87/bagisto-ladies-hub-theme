@@ -8,6 +8,8 @@ use Webkul\Product\Repositories\ProductRepository;
 use Webkul\Attribute\Repositories\AttributeFamilyRepository;
 use Illuminate\Support\Str;
 
+use function Arete\LadiesHub\Helpers\difference;
+
 /**
  * Class GenerateProduct
  *
@@ -36,6 +38,9 @@ class GenerateProduct
      */
     protected $types;
 
+
+    public static $typeLookUp = [];
+
     /**
      * Create a new helper instance.
      *
@@ -46,11 +51,14 @@ class GenerateProduct
     public function __construct(
         ProductRepository $productRepository,
         AttributeFamilyRepository $attributeFamilyRepository
-    )
-    {
+    ) {
         $this->productRepository = $productRepository;
-
+        
         $this->attributeFamilyRepository = $attributeFamilyRepository;
+
+        if (!count(self::$typeLookUp)) {
+            $this->createTypeLookUp();
+        }
 
         $this->types = [
             'text',
@@ -66,6 +74,8 @@ class GenerateProduct
             'checkbox',
         ];
     }
+
+
 
     /**
      * This brand option needs to be available so that the generated product
@@ -86,34 +96,9 @@ class GenerateProduct
         }
     }
 
-    /**
-     * @return mixed
-     */
-    public function create()
+    public function createTypeLookUp()
     {
-        $attributeFamily = $this->attributeFamilyRepository->findWhere([
-            'code' => 'default',
-        ])->first();
-
-        $attributes = $this->getFamilyAttributes($attributeFamily);
-
-
-        $faker = \Faker\Factory::create();
-
-        $sku = strtolower($faker->bothify('??#####???'));
-        $data['sku'] = $sku;
-        $data['attribute_family_id'] = $attributeFamily->id;
-        $data['type'] = 'simple';
-
-        $product = $this->productRepository->create($data);
-
-        unset($data);
-
-        $date = today();
-        $specialFrom = $date->toDateString();
-        $specialTo = $date->addDays(7)->toDateString();
-
-        $selectFiller = function ($attribute) use (&$data) {
+        $selectFiller = function ($attribute, &$data, $faker, $sku, $date, $specialFrom, $specialTo) {
             if ($attribute->code === 'tax_category_id' ) return;
 
             $options = $attribute->options;
@@ -145,43 +130,50 @@ class GenerateProduct
 
         
 
-        $typeLookUp = [
-            'text' => function ($attribute) use(&$data, $faker, $sku)  {
-                if ($attribute->code == 'width'
-                    || $attribute->code == 'height'
-                    || $attribute->code == 'depth'
-                    || $attribute->code == 'weight'
+        self::$typeLookUp = [
+            'text' => function ($attribute, &$data, $faker, $sku, $date, $specialFrom, $specialTo)   {
+                $code = $attribute->code;
+                if ($code == 'width'
+                    || $code == 'height'
+                    || $code == 'depth'
+                    || $code == 'weight'
                 ) {
-                    $data[$attribute->code] = $faker->randomNumber(3);
-                } elseif ($attribute->code == 'url_key') {
-                    $data[$attribute->code] = $sku;
-                } elseif ($attribute->code =='product_number') {
-                    $data[$attribute->code] = $faker->randomNumber(5);
-                } elseif ($attribute->code =='name') {
-                    $data[$attribute->code] = ucfirst($faker->words(rand(1,4),true));
-                } elseif ($attribute->code != 'sku') {
-                    $data[$attribute->code] = $faker->name;
+                    $data[$code] = $faker->randomNumber(3);
+                } elseif ($code == 'url_key') {
+                    $data[$code] = $sku;
+                } elseif ($code =='product_number') {
+                    $data[$code] = $faker->randomNumber(5);
+                } elseif ($code =='name') {
+                    $data[$code] = ucfirst($faker->words(rand(1,4),true));
+                } elseif ($code != 'sku') {
+                    $data[$code] = $faker->name;
                 } else {
-                    $data[$attribute->code] = $sku;
+                    $data[$code] = $sku;
                 }
             },
-            'textarea' => function ($attribute) use(&$data, $faker) {
+            'textarea' => function ($attribute, &$data, $faker, $sku, $date, $specialFrom, $specialTo) {
                 $data[$attribute->code] = $faker->text;
 
                 if ($attribute->code == 'description' || $attribute->code == 'short_description') {
                     $data[$attribute->code] = '<p>' . $data[$attribute->code] . '</p>';
                 }
             },
-            'boolean' => function ($attribute) use(&$data, $faker) {
+            'boolean' => function ($attribute, &$data, $faker, $sku, $date, $specialFrom, $specialTo) {
                 $data[$attribute->code] = $faker->boolean;
             },
-            'price' => function ($attribute) use(&$data, $faker) {
+            'price' => function ($attribute, &$data, $faker, $sku, $date, $specialFrom, $specialTo)  {
+                // if($attribute->code['special_price']) {
+                //     if($faker->boolean()) {
+                //         $data['special_price'] = rand(5,200);
+                //     }
+                //     return;
+                // }
                 $data[$attribute->code] = rand(5,200);
             },
-            'datetime' => function ($attribute) use(&$data, $date) {
+            'datetime' => function ($attribute, &$data, $faker, $sku, $date, $specialFrom, $specialTo)  {
                 $data[$attribute->code] = $date->toDateTimeString();
             },
-            'date' => function ($attribute) use(&$data, $date, $specialFrom, $specialTo) {
+            'date' => function ($attribute, &$data, $faker, $sku, $date, $specialFrom, $specialTo)  {
                 if ($attribute->code == 'special_price_from') {
                     $data[$attribute->code] = $specialFrom;
                 } elseif ($attribute->code == 'special_price_to') {
@@ -192,7 +184,7 @@ class GenerateProduct
             },
             'select' => $selectFiller,
             'multiselect' => $selectFiller,
-            'checkbox' => function ($attribute) use (&$data) {
+            'checkbox' => function ($attribute, &$data, $faker, $sku, $date, $specialFrom, $specialTo)  {
                 $options = $attribute->options;
 
                 if ($options->count()) {
@@ -208,9 +200,41 @@ class GenerateProduct
                 }
             }
         ];
+    }
 
+    /**
+     * @return mixed
+     */
+    public function create()
+    {
+
+        echo "\ncomenzando: ". difference()->format("%h:%m:%s transcurridos\n");
+
+        $attributeFamily = $this->attributeFamilyRepository->findWhere([
+            'code' => 'default',
+        ])->first();
+
+        $attributes = $this->getFamilyAttributes($attributeFamily);
+
+
+        $faker = \Faker\Factory::create();
+
+        $sku = strtolower($faker->bothify('??#####???'));
+        $data['sku'] = $sku;
+        $data['attribute_family_id'] = $attributeFamily->id;
+        $data['type'] = 'simple';
+
+        $product = $this->productRepository->create($data);
+
+        unset($data);
+
+        $date = today();
+        $specialFrom = $date->toDateString();
+        $specialTo = $date->addDays(7)->toDateString();
+
+        
         foreach ($attributes as $attribute) {
-            $typeLookUp[$attribute->type]($attribute);
+            self::$typeLookUp[$attribute->type]($attribute, $data, $faker, $sku, $date, $specialFrom, $specialTo);
         }
 
         // special price has to be less than price and not less than cost
@@ -246,6 +270,8 @@ class GenerateProduct
         ];
 
         $updated = $this->productRepository->update($data, $product->id);
+
+        echo "finalizando: ". difference()->format("%h:%m:%s transcurridos\n");
 
         return $updated;
     }

@@ -23,6 +23,8 @@ class LadiesHubServiceProvider extends ServiceProvider
             ]);
         }
 
+        include dirname(__DIR__) . '/Helpers/functions.php';
+
     }
 
 
@@ -64,7 +66,6 @@ class LadiesHubServiceProvider extends ServiceProvider
      */
     protected function registerConfig()
     {
-        
         $this->mergeConfigFrom(dirname(__DIR__) . '/Config/themes.php', 'themes.themes');
     }
 }
