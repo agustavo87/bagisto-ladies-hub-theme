@@ -3,7 +3,7 @@
 namespace Arete\LadiesHub\Commands;
 
 use Illuminate\Console\Command;
-use Webkul\Product\Helpers\GenerateProduct;
+use Arete\LadiesHub\Helpers\GenerateProduct;
 
 class GenerateProducts extends Command
 {
