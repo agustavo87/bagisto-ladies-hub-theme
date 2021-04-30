@@ -4,6 +4,7 @@ namespace Arete\LadiesHub\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use Arete\LadiesHub\Commands\GenerateProducts;
 
 class LadiesHubServiceProvider extends ServiceProvider
 {
@@ -15,7 +16,15 @@ class LadiesHubServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadPublishableAssets();
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                GenerateProducts::class
+            ]);
+        }
+
     }
+
 
     /**
      * Register services.
