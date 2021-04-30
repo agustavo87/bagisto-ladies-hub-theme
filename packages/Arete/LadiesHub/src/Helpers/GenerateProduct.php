@@ -93,17 +93,18 @@ class GenerateProduct
      */
     public function create()
     {
-        $attributes = $this->getDefaultFamilyAttributes();
-
         $attributeFamily = $this->attributeFamilyRepository->findWhere([
             'code' => 'default',
-        ]);
+        ])->first();
+
+        $attributes = $this->getFamilyAttributes($attributeFamily);
+
 
         $faker = \Faker\Factory::create();
 
         $sku = strtolower($faker->bothify('??#####???'));
         $data['sku'] = $sku;
-        $data['attribute_family_id'] = $attributeFamily->first()->id;
+        $data['attribute_family_id'] = $attributeFamily->id;
         $data['type'] = 'simple';
 
         $product = $this->productRepository->create($data);
@@ -236,23 +237,17 @@ class GenerateProduct
     }
 
     /**
+     * @param \Webkul\Attribute\Models\AttributeFamily $attributeFamily
      * @return \Illuminate\Support\Collection
      */
-    public function getDefaultFamilyAttributes()
+    public function getFamilyAttributes($attributeFamily)
     {
-        $attributeFamily = $this->attributeFamilyRepository->findWhere([
-            'code' => 'default',
-        ]);
-
         $attributes = collect();
+        $attributeGroups = $attributeFamily->attribute_groups;
 
-        if ($attributeFamily->count()) {
-            $attributeGroups = $attributeFamily->first()->attribute_groups;
-
-            foreach ($attributeGroups as $attributeGroup) {
-                foreach ($attributeGroup->custom_attributes as $customAttribute) {
-                    $attributes->push($customAttribute);
-                }
+        foreach ($attributeGroups as $attributeGroup) {
+            foreach ($attributeGroup->custom_attributes as $customAttribute) {
+                $attributes->push($customAttribute);
             }
         }
 
