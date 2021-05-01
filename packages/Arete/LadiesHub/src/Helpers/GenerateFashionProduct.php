@@ -2,10 +2,12 @@
 
 namespace Arete\LadiesHub\Helpers;
 
+use Illuminate\Support\Facades\DB;
 use Webkul\Attribute\Models\Attribute;
 use Webkul\Attribute\Models\AttributeOption;
 use Webkul\Product\Repositories\ProductRepository;
 use Webkul\Attribute\Repositories\AttributeFamilyRepository;
+use Webkul\Attribute\Repositories\AttributeRepository;
 use Illuminate\Support\Str;
 
 use function Arete\LadiesHub\Helpers\difference;
@@ -15,7 +17,7 @@ use function Arete\LadiesHub\Helpers\difference;
  *
  * @package Arete\LadiesHub\Helpers
  */
-class GenerateProduct
+class GenerateFashionProduct
 {
     /**
      * Product Repository instance
@@ -23,6 +25,13 @@ class GenerateProduct
      * @var \Webkul\Product\Repositories\ProductRepository
      */
     protected $productRepository;
+
+    /**
+     * Attribute Repository instance
+     * 
+     * @var \Webkul\Product\Repositories\AttributeRepository
+     */
+    protected $attributeRepository;
 
     /**
      * AttributeFamily Repository instance
@@ -44,21 +53,24 @@ class GenerateProduct
     /**
      * Create a new helper instance.
      *
-     * @param  \Webkul\Product\Repositories\ProductRepository  $productImage
-     * @param  \Webkul\Product\Repositories\AttributeFamilyRepository  $productImage
+     * @param  \Webkul\Product\Repositories\ProductRepository  $productRepository
+     * @param  \Webkul\Product\Repositories\AttributeRepository  $attributeRepository
+     * @param  \Webkul\Product\Repositories\AttributeFamilyRepository  $attributeFamilyRepository
      * @return void
      */
     public function __construct(
         ProductRepository $productRepository,
+        AttributeRepository $attributeRepository,
         AttributeFamilyRepository $attributeFamilyRepository
     ) {
         $this->productRepository = $productRepository;
-        
+        $this->attributeRepository = $attributeRepository;
         $this->attributeFamilyRepository = $attributeFamilyRepository;
 
         if (!count(self::$typeLookUp)) {
             $this->createTypeLookUp();
         }
+
 
         $this->types = [
             'text',
@@ -73,6 +85,50 @@ class GenerateProduct
             'file',
             'checkbox',
         ];
+    }
+
+    public function createAttributes()
+    {
+
+        $wash = $this->attributeRepository->getAttributeByCode('wash_type');
+        if(!$wash) $wash = $this->createWashAttribute();
+
+        return $wash;
+    }
+
+    public function createWashAttribute()
+    {
+        $data = [
+            'code'                => 'wash_type',
+            'admin_name'          => 'Wash Type',
+            'type'                => 'text',
+            'validation'          => NULL,
+            'position'            => '1',
+            'is_required'         => '1',
+            'is_unique'           => '1',
+            'value_per_locale'    => '0',
+            'value_per_channel'   => '0',
+            'is_filterable'       => '0',
+            'is_configurable'     => '0',
+            'is_user_defined'     => '0',
+            'is_visible_on_front' => '0',
+            'use_in_flat'         => '1',
+            'is_comparable'       => '0',
+        ];
+
+        return $this->attributeRepository->create($data);
+    }
+
+    public function createLingerieAttributeFamily()
+    {
+        return DB::table('attribute_families')->insert([
+            [
+                'code'            => 'lingerie',
+                'name'            => 'Lingerie',
+                'status'          => '0',
+                'is_user_defined' => '1',
+            ]
+        ]);
     }
 
 

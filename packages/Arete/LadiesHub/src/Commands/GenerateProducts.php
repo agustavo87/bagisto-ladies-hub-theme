@@ -3,7 +3,7 @@
 namespace Arete\LadiesHub\Commands;
 
 use Illuminate\Console\Command;
-use Arete\LadiesHub\Helpers\GenerateProduct;
+use Arete\LadiesHub\Helpers\GenerateFashionProduct;
 
 class GenerateProducts extends Command
 {
@@ -36,7 +36,7 @@ class GenerateProducts extends Command
      *
      * @return void
      */
-    public function __construct(GenerateProduct $generateProduct)
+    public function __construct(GenerateFashionProduct $generateProduct)
     {
         parent::__construct();
 
@@ -50,9 +50,12 @@ class GenerateProducts extends Command
      */
     public function handle()
     {
+       print_r($this->generateProduct->createLingerieAttributeFamily());
+        return true;
         if (! is_string($this->argument('value')) || ! is_numeric($this->argument('quantity'))) {
             $this->info('Illegal parameters or value of parameters are passed');
         } else {
+            
             if (strtolower($this->argument('value')) == 'product' || strtolower($this->argument('value')) == 'products') {
                 $quantity = (int)$this->argument('quantity');
 
@@ -89,6 +92,8 @@ class GenerateProducts extends Command
             } else {
                 $this->line('Sorry, this generate option is invalid.');
             }
+
+            print_r($this->generateProduct->createAttributes());
         }
     }
 }
